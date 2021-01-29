@@ -1,0 +1,344 @@
+*{
+    font-family: Montserrat;
+    margin: 0;
+    padding: 0;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+}
+.content .row1{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-left: 7.5%;
+}
+.content .row1 .navigationItemsHolder{
+    display: flex;
+    flex-direction: row;
+}
+
+.content .row1 .navigationItemsHolder .trueContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    margin-top: 2rem;
+}
+input{
+    padding: .5rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px grey solid;
+    margin-top: .4rem;
+    width: 90%;
+    user-select: none;
+}
+.content .row1 .navigationItemsHolder .trueContainer .navigatorItem{
+    display: flex;
+    flex-direction: row;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.content .row1 .navigationItemsHolder .trueContainer .navigatorItem:hover{
+    border-bottom:4px #76C90E solid;
+
+}
+
+.content .row1 .navigationItemsHolder .trueContainer .navigatorItem img{
+    height: 30px;
+    width: 30px;
+}
+.content .row1 .navigationItemsHolder .trueContainer .navigatorItem p{
+    margin-top: .4rem;
+    margin-left: .5rem;
+}
+.content .row2{
+   display: flex;
+   flex-direction: column;
+}
+.content .row2 .tab{
+    animation-name: TAB_ANIMEE;
+    animation-duration: 1.5s;
+}
+#help{
+    width: 100%;
+}
+#help .row1{
+    background: linear-gradient(-45deg, rgb(137, 157, 243), rgb(0, 32, 216));
+    width: 100%;
+    padding: 0;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    left: 0;
+}
+#help .row1 .c{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    width: 100%;
+    align-self: center;
+    height: 20%
+}
+#help .row1 .c button{
+    margin: 0;
+}
+#help .row1 .c input{
+    margin: 0;
+}
+
+
+
+
+
+@keyframes TAB_ANIMEE{
+    from{opacity: 0;x:-100%;}
+    to{opacity: 1;x:0;}
+}
+.content .row2 #profile{
+    display: flex;
+    flex-direction: column;
+}
+
+.content .row2 #profile .profilenavigator{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 1px rgb(201, 201, 201) solid;
+    margin: 3rem;
+}
+.content .row2 #profile .profilenavigator .leftnav{
+    background-color: rgb(243, 243, 243);
+}
+.content .row2 #profile .profilenavigator .leftnav .navitem{
+    padding: 1rem;
+    border-bottom: 1px rgb(201, 201, 201) solid;
+    border-right: 1px rgb(201, 201, 201) solid;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+.content .row2 #profile .profilenavigator .leftnav .navitem:hover{
+    background: linear-gradient(180deg, #94E132,#76C90E);
+}
+.content .row2 #profile .profilenavigator .leftnav .navitem:last-child{
+    border-bottom: none;
+}
+
+.content .row2 #profile .profilenavigator .leftnav .navitem p{
+    margin-left: .5rem;
+}
+
+.content .row2 #profile .profilenavigator .mainnav .profile{
+    background: url('../assets/images/person.png');
+    width: 3.5rem;
+    height: 3.5rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.content .row2 #profile .profilenavigator .mainnav{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    animation-name: MAIN_NAV;
+    animation-duration: 1s;
+}
+@keyframes MAIN_NAV{
+    from{left: -100%}
+    to{left: 0}
+}
+.content .row2 #profile .profilenavigator #userInformation{
+    display: none;
+}
+.content .row2 #profile .profilenavigator #contactInformation{
+    display: none;
+
+}
+
+.content .row2 #profile .profilenavigator .mainnav .set{
+    margin-left: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: .5rem;
+    width:35%;
+}
+.content .row2 #profile .profilenavigator .mainnav .set .value{
+    margin-left: .9rem;
+    color: green;
+}
+.content .row2 #profile .profilenavigator .mainnav button{
+    width: 20%;
+    margin-top: 2.5rem;
+    padding: .3rem;
+    border-radius: .2rem;
+    background: transparent;
+    border: 1px green solid;
+
+}
+.content .row2 h2{
+    margin-left: 3%;
+}
+.content .row2 #profile .profilenavigator .mainnav .InputPair{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 2rem;
+}
+.content .row2 #profile .profilenavigator .mainnav h2{
+    font-size: 1.2rem;
+    color: #233AA9;
+    font-weight: 600;
+}
+.content .row2 #profile .profilenavigator  #courseInformation .superSet{
+    margin-top: 3rem;
+
+}
+.content .row2 #profile .profilenavigator .mainnav table tr{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.content .row2 #profile .profilenavigator .mainnav table th{
+    margin:0;
+    padding:0;
+    text-align: left;
+}
+.content .row2 #profile .profilenavigator .mainnav table tr:first-child{
+    background: linear-gradient(180deg, #233AA9,#0C2084);
+    color: #fff;
+    padding: 1rem;
+}
+.content .row2 #profile .profilenavigator .mainnav table{
+    border: 1px #dbdbdb solid;
+}
+.content .row2 #profile .profilenavigator .mainnav table tr{
+    padding: 1rem;
+}
+.content .row2 #dashboard  .subtitle{
+    font-size: 1.2rem;
+    color: #233AA9;
+    font-weight: 600;
+    margin-left: 3%;
+}
+.row2 #dashboard .cardsContainer .rectangle{
+    margin-left: 3%;
+    padding: 1.5rem;
+    background: linear-gradient(180deg, rgb(226, 226, 226),rgb(245, 245, 245));
+    border-radius: 10px;
+    width: 40%;
+    border: 1px rgb(116, 116, 116) solid;
+    margin-top: 1rem;
+}
+.row2 #dashboard .cardsContainer .rectangle h3{
+    color: #000;
+    text-shadow: 1px 1px #fff;
+}
+.row2 #dashboard .cardsContainer .rectangle p{
+    color: #000;
+    opacity: 80%;
+    margin-top: .5rem;
+}
+.row2 #dashboard button{
+    margin-top: 2rem;
+    padding: .3rem;
+    background: linear-gradient(180deg, #4759b8,#233AA9);
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 700;
+}
+#help{
+    width: 100%;
+}
+#help .r1{
+    background: url('https://cdn.dribbble.com/users/35741/screenshots/1557067/pattern.png');
+    background-size: cover;
+    background-repeat: no-repeat;    
+    width: 100%;
+    padding: 0;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    left: 0;
+}
+#help .r1 .c{
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    width: 60%;
+    align-self: center;
+    height: 20%;
+    margin-top: 2rem;
+}
+#help .r1 .c button{
+    margin: 0;
+    margin-left: 0;
+    background: linear-gradient(180deg, rgb(117, 153, 231), rgb(49, 71, 167));
+    border: none;
+    font-weight: 700;
+    text-shadow: .5px .5px rgb(49, 49, 49);
+    font-size: 1.2rem;
+    border-radius: .5rem;
+    color: #fff;
+}
+#help .r1 .c input{
+    margin: 0;
+    font-size: 1.2rem;
+
+
+}
+#help p{
+    color: #fff;
+    text-shadow: .5px .5px rgb(131, 131, 131);
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 3rem;
+}
+#help .trendingstuff h1{
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 4rem;
+    text-shadow: 1px 1px #919191;
+    
+}
+#help .trendingstuff .topic-double{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-top: 3rem;
+}
+#help .trendingstuff .topic-double .topic{
+    background: linear-gradient(180deg, rgb(191, 212, 252), rgb(232, 240, 250));
+    width: 92%;
+    height: 97%;
+    border-radius: 1rem;
+    padding-top: 0;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
+#help .trendingstuff .topic-double .topic .title{
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #0C2084;
+}
+#help .trendingstuff .topic-double .topic .description{
+    color: #0C2084;
+    opacity: 60%;
+    font-weight: 400;
+    font-size: .8rem;
+    margin-top: .5rem;
+    margin-bottom: 0;
+    padding-left: 1rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+

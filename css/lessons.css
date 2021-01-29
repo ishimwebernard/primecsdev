@@ -1,0 +1,270 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: Montserrat;
+
+}
+body{
+    overflow-y: hidden;
+
+}
+.content{
+    display: grid;
+    grid-template-columns: .5fr 2.5fr;
+   height: 670px;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+#loader{
+    position: fixed;
+    top: 0;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    opacity: 70%;
+    z-index: 5;
+    display: none;
+
+}
+#loader img{
+    position: absolute;
+    margin-left: 47.5%;
+    margin-right: auto;
+    margin-top: 15%;
+    width: 5%;
+}
+#loader h2{
+    color: #fff;
+    margin-top: 17.5%;
+    text-align: center;
+}
+
+.col1{
+    height: 670px;
+    width: 100%;
+    background: #727582;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.logo{
+    width: 100%;
+    background: #fff;
+    height: 5rem;
+}
+.navGroup{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: .75rem;
+    
+}
+.out{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: .75rem;
+    
+}
+.navGroup h2{
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5%;
+    font-size: 1.5rem;
+    color: #EAEDE6;
+    cursor: pointer;
+}
+
+.out h2{
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5%;
+    font-size: 1.5rem;
+    color: #EAEDE6;
+    cursor: pointer;
+
+}
+#enrollmentCLASSES{
+    overflow-y: scroll;
+}
+
+.col2{
+    overflow-y: scroll;
+    height: 665px;
+    animation-name: col2Animation;
+    animation-duration: .777777777777777777s;
+}
+.accountcontrol{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 80%;
+    display: none;
+}
+.center{
+    position: absolute;
+    opacity: 100%;
+    background: #fff;
+    align-self: center;
+    width: 60%;
+    margin-left: 20%;
+    height: 50%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    display: none;
+}
+.center img{
+    background-color: #000;
+    border-radius: 50%;
+    height: 10rem;
+    width: 10rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.center button{
+    width: 30%;
+    align-self: center;
+}
+.center small{
+    color: #727582;
+    margin-top: 1rem;
+}
+.center input{
+    width: 100%;
+    height: auto;
+}
+.center label {
+    color: white;
+    cursor: pointer;
+    background-color: #233AA9;
+    width: 30%;
+    align-self: center;
+    text-align: center;
+    padding: 2px;
+    font-weight: 700;
+    margin-top: .5rem;
+  }
+  
+
+.center .enrollmentClass{
+    background-color: #f2f2f2;
+    padding: .5rem;
+    border-right: #DDDDDD;
+    cursor: pointer;
+}
+.center .enrollmentClass:hover{
+    background: #cacaca;
+}
+.center .enrollmentClass p{
+    font-weight: 500;
+}
+
+
+@keyframes col2Animation{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+.col2 .row1{
+    background: #000;
+    background: #ffffff;
+    box-shadow:  10px 10px 30px #d9d9d9;
+height: 5rem;
+width: 100%;
+text-align: left;
+display: flex;
+flex-direction: row;
+}
+.col2 .row1 .img{
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #000;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.col2 .row1 h1{
+    font-size: 2rem;
+    width: auto;
+    height: auto;
+    color: #102ACD;
+    margin-top: .5rem;
+}
+
+.col2 .row2{
+    margin-top: 5rem;
+    margin-left: 6.5359477124183%;
+    
+}
+.col2 .row2 small{
+    color: #727582;
+}
+.col2 .row2 .rectangle{
+    margin-top: 1.5rem;
+    background: #F9FAFF;
+box-shadow:  9px 9px 18px #f2f2f2, 
+             -9px -9px 18px #ffffff;
+padding: 2.53267973856209%;
+margin-right: 2.53267973856209%;             
+}
+.col2 .row2 .rectangle button{
+    margin-top: 1rem;
+    background: #233AA9;
+    color: #fff;
+    border: none;
+    padding: 1%;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.col2 .row2 .rectangle .r1 h2{
+    margin-left: .2%;
+}
+.col2 .row2 .card:nth-child(2){
+    margin-top: 2rem;
+
+}
+.col2 .row2 .rectangle p{
+    margin-top: .5rem;
+}
+#nothing{
+    text-align: center;
+}
+#nothing p{
+    color: #727582;
+}
+#programstoEnrlss{
+    margin-top: 3rem;
+}
+.mainNavigator{
+    display: flex;
+    flex-direction: column;
+}
+
+.col2 .row2 h1{
+    color: #8FE423;
+    font-size: 1.5rem;
+
+}
+.col2 .row2 h2{
+    margin-top: 5%;
+    color: #233AA9;
+}
+.col2 .row2 p{
+    margin-top: 1.5%;
+    color: #686868;
+}
+.col2 .row2 .img{
+    height: 25rem;
+    width: 60%;
+    margin-top: 2rem;   
+}
