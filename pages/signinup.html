@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/createaccount.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="../js/signinup.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700&display=swap" rel="stylesheet"> 
+    <title>PrimeEcs</title>
+</head>
+<body>
+    <div class="content">
+        <div class="loader" id="loader">
+            <div class="lc">
+                <img src="../assets/images/loading.gif" alt="">
+            <h2>Loading ...</h2>
+            </div>
+        </div>
+        <div class="menu" id="menu">
+            
+          <div class="col1">
+            <p class="navigationitem">Home</p>
+            <p class="navigationitem">Services</p>
+            <p class="navigationitem">Carreers</p>
+            <p class="navigationitem">About</p>
+            <p class="navigationitem">Contact</p>
+          </div>
+          <div class="col2" onclick="showHideHamburger()"> </div>
+        </div>
+        <div class="row1">
+            <div class="hamburger" onclick="showHideHamburger()">
+                <div class="line"> </div>
+                <div class="line"> </div>
+                <div class="line"> </div>
+            </div>
+            <img src="/assets/images/logo.png" class="logo">
+            <div class="navigationitems">
+                <p class="navigationitem">Home</p>
+                <p class="navigationitem">Services</p>
+                <p class="navigationitem">Carreers</p>
+                <p class="navigationitem">About</p>
+                <p class="navigationitem">Contact</p>
+            </div>
+            <div class="rightitems">
+                <p class="information">+1 (913) 123 456</p>
+                <p class="information">info@myprimecs.com</p>
+                <div class="buttongroup">
+                    <div class="button">
+                        <p class="subscribetext">SUBSCRIBE</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="r">>
+
+        <div class="realcontainer">
+        
+            <div id="signin" class="tab">
+                <h2>Sign into your account</h2>
+                <p>Build Skills for every time, create bla bla bla</p>
+                <div class="buttongroup">
+                    <div class="button">
+                        <img src="../assets/images/Google.png" alt="">
+                        <p class="textdesc">Sign up with google</p>
+                    </div>
+                    <div class="button">
+                        <img src="../assets/images/Facebook.png" alt="" id="facebook">
+                        <p class="textdesc">Sign up with facebook</p>
+                    </div>
+                </div>
+                <div class="form">
+                    <input type="text" placeholder="Email address" id="signEmail">
+                    <input type="password" placeholder="Password" id="signPassword">
+
+                    <p>By clicking this button, you agree with primecs policy</p>
+                    <p>Don't have account,</p>
+                    <a href="../pages/createaccount.html">Create account</a>
+                    <button onclick="login()">SIGN IN</button>
+                </div>
+            </div>
+            
+        </div>
+        </div>
+      
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDV8mW8bweN6YOg0OKgRZ9umOVs_UUN-pA",
+    authDomain: "primecs-1cbfc.firebaseapp.com",
+    projectId: "primecs-1cbfc",
+    storageBucket: "primecs-1cbfc.appspot.com",
+    messagingSenderId: "33832366036",
+    appId: "1:33832366036:web:cc0d5c26b3c1b4690ff041",
+    measurementId: "G-ETGHB4KYQF"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var db = firebase.firestore();
+  
+  function signUp(){
+      var firstName = document.getElementById('firstName');
+      var secondName = document.getElementById('secondName');
+      var email = document.getElementById('email');
+      var firstPassword = document.getElementById('passwordOne');
+      var secondPassword = document.getElementById('passwordTwo');
+
+    if(firstPassword.value != secondPassword.value){
+        alert('Passwords Dont match');
+    }else{
+        
+            firebase.auth().createUserWithEmailAndPassword(String(email.value), String(firstPassword.value))
+            .then((user) => {
+                console.log(`Starting creation of a document`);
+                db.collection('users').doc(user.user.uid).set({
+                   firstName: String(firstName.value),
+                   secondName: String(secondName.value),
+                   courses: ""
+               })
+              
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+	alert(`${errorCode}`);
+    // ..
+  });
+    }
+
+	}
+
+    function login(){
+        var signPassword = document.getElementById('signPassword');
+        var signEmail = document.getElementById('signEmail');
+        document.getElementById("loader").style.display = "block";
+	firebase.auth().signInWithEmailAndPassword(signEmail.value, signPassword.value)
+  .then((user) => {
+    document.cookie = `nick=${user.user.uid}`;
+    location.href="../pages/aftersigninnew.html";
+    document.getElementById("loader").style.display = "block";
+
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+	alert(errorMessage);
+  });
+}
+</script>
+    
+</body>
+</html>

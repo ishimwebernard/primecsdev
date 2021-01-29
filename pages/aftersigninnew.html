@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/aftersigninnew.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700&display=swap" rel="stylesheet"> 
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="content">
+        <div class="row1">
+            <div class="logoholder">
+                <img src="../assets/images/logolearning.png" alt="">
+            </div>
+           
+                <div class="navigationItemsHolder">
+                    <div class="trueContainer">
+                  
+                        <div class="navigatorItem" onclick="switchTabFor(1)">
+                            <img src="../assets/images/home.png" alt="" onclick="switchTabFor(1)">
+                            <p class="navigationText" onclick="switchTabFor(1)">DASHBOARD</p>
+                        </div>
+                        <div class="navigatorItem" onclick="switchTabFor(2)">
+                            <img src="../assets/images/help.png" alt="">
+                            <p class="navigationText">SUPPORT</p>
+                        </div>
+                        <div class="navigatorItem" onclick="switchTabFor(0)">
+                            <img src="../assets/images/account.png" onclick="switchTabFor(0)" alt="">
+                            <p class="navigationText" onclick="switchTabFor(0)">MY ACCOUNT</p>
+                        </div>
+                        <div class="navigatorItem">
+                            <img src="../assets/images/out.png" onclick="logout()" alt="">
+                            <p class="navigationText" onclick="logout()">SIGN OUT</p>
+                        </div>
+                    </div>
+                </div>
+           
+        </div>
+        <div class="row2">
+           <div class="tab" id="profile">
+            <h2>My Profile</h2>
+            <div class="profilenavigator">
+                <div class="leftnav">
+                    <div class="navitem" onclick="switchNav(0)">
+                        <img src="../assets/images/person_simple.png" alt="">
+                        <p>User Information</p>
+                    </div>
+                    <div class="navitem" onclick="switchNav(1)">
+                        <img src="../assets/images/contact_info.png" alt="">
+                        <p>Contact information</p>
+                    </div>
+                    <div class="navitem" onclick="switchNav(2)">
+                        <img src="../assets/images/course_info.png" alt="">
+                        <p>Course/ Products</p>
+                    </div>
+                    <div class="navitem" onclick="switchNav(3)">
+                        <img src="../assets/images/payment_info.png" alt="">
+                        <p>Payment Information</p>
+                    </div>
+                </div>
+                <div class="mainnav" id="userInformation">
+                    <div class="profile"></div>
+                    <div class="set">
+                        <p class="identifier">Name</p>
+                        <p class="value" id="name">Murara</p>
+                    </div>
+                    <div class="set">
+                        <p class="identifier">Email ID</p>
+                        <p class="value" id="email">Murara@mapl.com</p>
+                    </div>
+                    <button>Upload Profile Photo</button>
+                </div>
+                <div class="mainnav" id="contactInformation">
+                   <section class="cinfo">
+                        <h2>Mailing Address</h2>
+                        <div class="InputPair">
+                            <input type="text" placeholder="Addess Line 1" class="address">
+                            <input type="text" placeholder="Addess Line 1" class="address">
+                        </div>
+                        <div class="InputPair">
+                            <input type="text" placeholder="Addess Line 1" class="address">
+                            <input type="text" placeholder="Addess Line 1" class="address">
+                        </div>
+                        <div class="InputPair">
+                            <input type="text" placeholder="Addess Line 1" class="address">
+                            <input type="text" placeholder="Addess Line 1" class="address">
+                        </div>
+
+                   </section>
+                   <section>
+                       <h2>Education</h2>
+                       <div class="InputPair">
+                        <input type="text" placeholder="Secondary Education" class="education">
+                        <input type="text" placeholder="University Education" class="education">
+                    </div>
+                   </section>
+                   <section>
+                       <h2>Employment</h2>
+                       <div class="InputPair">
+                        <input type="text" placeholder="Employment Company" class="employment">
+                        <input type="text" placeholder="Supervisors Address" class="employment">
+                    </div>
+                   </section>
+                </div>
+                <div class="mainnav" id="courseInformation">
+                    <h2>Fall 2013 and Ever</h2>
+                   <div class="superSet">
+                    <!-- <div class="set">
+                        <p class="identifier">Total Course Fee</p>
+                        <p class="value">$1212</p>
+                    </div> -->
+                    <!-- <div class="set">
+                        <p class="identifier">Depth Subject</p>
+                        <select name="" id="">
+                            <option value="">Math</option>
+                            <option value="">Physics</option>
+                            <option value="">Compt</option>
+                        </select>
+                    </div> -->
+                   </div>
+                </div>
+                <div class="mainnav">
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Receipt</th>
+                        </tr>
+                        <tr>
+                            <td>Slip</td>
+                            <td>$5000</td>
+                            <td>Processed</td>
+                            <td>Click Here</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+           </div>
+           <div class="tab" id="dashboard">
+                <h2>Dashboard</h2>
+                <h3 class="subtitle">My Active Courses</h3>
+                <div class="cardsContainer" id="enrolledPrograms">
+                </div>
+                <h3 class="subtitle">Completed Courses</h3>
+                <div class="cardsContainer" >
+                    <div class="rectangle">
+                        <h3>AEC360 Business</h3>
+                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
+                        <button onclick="enroll(`AEC360 Business`)">Enroll</button>
+                    </div>       
+                    <div class="rectangle">
+                        <h3>AEC360 Professional</h3>
+                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
+                        <button onclick="enroll(`AEC360 Professional`)">Enroll</button>
+                    </div> 
+                    <div class="rectangle">
+                        <h3>AEC360 Executive
+                        </h3>
+                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
+                        <button onclick="enroll(`AEC360 Executive`)">Enroll</button>
+                    </div> 
+                    <div class="rectangle">
+                        <h3>AEC360 Custom
+                        </h3>
+                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
+                        <button onclick="enroll(`AEC360 Custom`)">Enroll</button>
+                    </div> 
+                </div>
+           </div>
+           <div class="tab" id="help">
+               <div class="r1">
+                   <p>Welcome to Primecs Education</p>
+                   <div class="c">
+                    <input type="text" placeholder="How can we help you?">
+                    <button>Search</button>
+                   </div>
+               </div>
+               <div class="trendingstuff">
+                   <h1>Trending topics</h1>
+                   <div class="topic-double">
+                        <div class="topic">
+                            <p class="title">Some kinda trending topic</p>
+                            <p class="description">bfjvlbfjlvwjlfkbvjlkbew</p>
+                        </div>
+                        <div class="topic">
+                            <p class="title">Some kinda trending topic</p>
+                            <p class="description">bfjvlbfjlvwjlfkbvjlkbew</p>
+                        </div>
+                   </div>
+                   <div class="topic-double">
+                    <div class="topic">
+                        <p class="title">Some kinda trending topic</p>
+                        <p class="description">bfjvlbfjlvwjlfkbvjlkbew</p>
+                    </div>
+                    <div class="topic">
+                        <p class="title">Some kinda trending topic</p>
+                        <p class="description">bfjvlbfjlvwjlfkbvjlkbew</p>
+                    </div>
+               </div>
+               <div class="topic-double">
+                <div class="topic">
+                    <p class="title">Some kinda trending topic</p>
+                    <p class="description">bfjvlbfjlvwjlfkbvjlkbew</p>
+                </div>
+                <div class="topic">
+                    <p class="title">Some kinda trending topic</p>
+                    <p class="description">bfjvlbfjlvwjlfkbvjlkbew</p>
+                </div>
+           </div>
+               </div>
+           </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineMax.min.js" integrity="sha512-lJDBw/vKlGO8aIZB8/6CY4lV+EMAL3qzViHid6wXjH/uDrqUl+uvfCROHXAEL0T/bgdAQHSuE68vRlcFHUdrUw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" integrity="sha512-8Wy4KH0O+AuzjMm1w5QfZ5j5/y8Q/kcUktK9mPUVaUoBvh3QPUZB822W/vy7ULqri3yR8daH3F58+Y8Z08qzeg==" crossorigin="anonymous"></script>
+    <!-- <script src="../js/aftersignin.js"></script> -->
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+          apiKey: "AIzaSyDV8mW8bweN6YOg0OKgRZ9umOVs_UUN-pA",
+          authDomain: "primecs-1cbfc.firebaseapp.com",
+          projectId: "primecs-1cbfc",
+          storageBucket: "primecs-1cbfc.appspot.com",
+          messagingSenderId: "33832366036",
+          appId: "1:33832366036:web:cc0d5c26b3c1b4690ff041",
+          measurementId: "G-ETGHB4KYQF"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+        var db = firebase.firestore();
+        var userId;
+        var courserBeingTaken;
+        var globalUserId;
+
+
+
+        switchNav(0);
+        function switchNav(n){
+            const mainnavs = document.getElementsByClassName('mainnav');
+            for(let mainnav of mainnavs){
+                mainnav.style.display="none";
+            }
+            mainnavs[n].style.display = "flex";
+            animateMain(mainnavs[n]);
+        }
+
+        function animateMain(MAIN_PART){
+            const TWEENTL = new TimelineMax();
+            TWEENTL.fromTo(MAIN_PART, .35, {x: "100%"},{x:"0%"});
+        }
+        // var choosefile = document.getElementById("choosefile").onchange = function(){
+        //     var storageRef = firebase.storage().ref();
+        //     var userStorageRef = storageRef.child(String(userId));
+
+        //     const selectedFile = document.getElementById('choosefile').files[0];
+        //     document.getElementById("loader").style.display = "block";
+        //     userStorageRef.put(selectedFile).then(function(snapshot) {
+        //         endAccountControlSession();
+                
+        //         const fileDirectory = snapshot.ref.getDownloadURL().then(url=>{
+        //             console.log(url);
+        //             populateUserImages();
+        //             document.getElementById("loader").style.display = "none";
+        //         }).catch(error=>{
+        //             alert(error);
+        //             console.log(error);
+        //         })
+        //     }).catch(error=>{
+        //         alert(String(error));
+        //         console.log(error);
+        //     });
+
+        // };
+
+
+         switchTabFor(1);
+        loadUserClasses();
+        populateUserImages();
+
+        function loadUserClasses() {
+            var enrolledPrograms = document.getElementById("enrolledPrograms");
+            var cookies = document.cookie
+                .split(';')
+                .map(cookie => cookie.split('='))
+                .reduce((accumulator, [key, value]) => ({
+                    ...accumulator,
+                    [key.trim()]: decodeURIComponent(value)
+                }), {});
+
+            console.log(`Starting retrieving`);
+            console.log(cookies);
+
+            userId = String(cookies.nick);
+            var uidLength = userId.split(``).length;
+
+            document.cookie = "nick=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+
+            if ((userId == "undefined") && (globalUserId == "")) {
+                location.href = 'signinup.html';
+
+            } else {
+                globalUserId = userId;
+                try {
+                    // document.getElementById("loader").style.display = "block";
+
+
+
+                    db.collection('users').doc(userId).get().then((data) => {
+                        // document.getElementById("loader").style.display = "none";
+                        courserBeingTaken = data.data().courses.trim().split(` `);
+                        var datesOfEnrollment = data.data().enrollmentdate.split(',');
+                        console.log(courserBeingTaken);
+                        var address = data.data().address.split(',');
+                        var addressViews = document.getElementsByClassName('address');
+
+                    for(let cntr = 0; cntr < address.length; cntr ++){
+                        addressViews[cntr].value = address[cntr]; 
+                    }
+                    
+
+                    var education = data.data().education.split(',');
+                    var educationViews = document.getElementsByClassName("education");
+                    for(let cntr = 0; cntr < education.length; cntr ++){
+                        educationViews[cntr].value = education[cntr];
+                    }
+
+                    var email = data.data().email;
+                    document.getElementById('email').innerText = email;
+
+                    var employment = data.data().employment.split(',');
+                    var employmentViews = document.getElementsByClassName('employment');
+                    for(let c = 0; c< employment.length; c++){
+                        employmentViews[c].value = employment[c];
+                    }
+                    var name = data.data().name;
+                    document.getElementById('name').innerText = name;
+                    
+
+
+                        if ((courserBeingTaken.length !== 0)) {
+                            for (let course of courserBeingTaken) {
+                                if (course != "") {
+                                enrolledPrograms.innerHTML += `
+                                <div class="rectangle">
+                                <h3>${course}</h3>
+                                <p>${fetchContent(String(course))}</p>
+                                <button onclick="createCookie(${uidLength})">Continue</button>
+                                <button onclick="exitClass('${course}')">Exit Course</button>
+                                </div>
+                                `;
+                                document.getElementById('courseInformation').innerHTML += `
+                                <div class="set">
+                        <p class="identifier">${course}</p>
+                        <p class="value">$1212</p>
+                    </div>`
+                                ;
+                                    //  document.getElementById("enrollmentCLASSES").innerHTML+=`
+
+                                    //  <div class="enrollmentClass">
+                                    // <p>${course}</p>
+                                    //  </div>
+                                    // `;
+                                 
+                                }
+
+                            }
+                        }
+
+                        // if (courserBeingTaken.length !== 0) {
+                        //     document.getElementById("nothing").style.display = "none";
+                        // }
+
+                    }).catch(err => {
+                        //alert(err+"Line 239");
+                    })
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            document.cookie = "_hush="+userId;
+        }
+
+        function createCookie(uidLength) {
+            document.cookie = `notallowed=` + String(uidLength == 0);
+            location.href = `aec360p.html`;
+            console.log(document.cookie);
+            console.log(`Called`);
+        }
+
+        function enroll(newClass) {
+            var stringCourse = "";
+            var isEnrolled = false;
+            console.log(courserBeingTaken);
+            for (let course of courserBeingTaken) {
+                stringCourse += course + " ";
+                if (course == String(newClass).replaceAll(` `, `_`)) {
+                    isEnrolled = true;
+                }
+            }
+            console.log(stringCourse);
+            stringCourse += String(newClass).replaceAll(` `, `_`);
+            if (!isEnrolled) {
+                // document.getElementById("loader").style.display = "block";
+                db.collection('users').doc(userId).set({
+                    courses: stringCourse
+                }).then(() => {
+                    // document.getElementById("loader").style.display = "none";
+                    document.cookie = "nick="+userId;    
+            location.href = `lessons.html`;
+                });
+            } else {
+                alert(`Already Enrolled`);
+            }
+            //loadUserClassesWithParam(userId); 
+        }
+
+        function fetchContent(subject) {
+            var descriptionObject = {
+                AEC360_Business: "A company, abbreviated as co., is a legal entity representing an association of people, whether natural, legal or a mixture of both, with a specific objective. ",
+                AEC360_Custom: " It is the custom to give gifts at Christmas time. Habit, applied particularly to an individual, implies such repetition of the same action as to develop a natural, spontaneous, or rooted tendency or inclination to perform it: to make a habit of reading the newspapers. Practice applies to a set of fixed habits or an ordered procedure in conducting activities: It is his practice to verify all statements.",
+                AEC360_Executive: "The executive is the branch of government exercising authority in and holding responsibility for the governance of a state. The executive executes and enforces law.",
+                AEC360_Professional: "A profession is an occupation founded upon specialized educational training, the purpose of which is to supply disinterested objective counsel and service to others, for a direct and definite compensation, wholly apart from expectation of other business gain.",
+            }
+            return descriptionObject[subject];
+        }
+
+        //FUNCTION TO RELOAD DATA FROM DATABASE AFTER ENROLLMENT
+        //IT SHOULD ALSO HAVE TO MANIPULATE VIEWS AS THE FIRST FUNCTION
+        function loadUserClassesWithParam(PARAM_USERID) {
+            var enrolledPrograms = document.getElementById("enrolledPrograms");
+            enrolledPrograms.innerHTML = "<small>ENROLLED PROGRAMS</small>";
+            try {
+                db.collection('users').doc(PARAM_USERID).get().then((data) => {
+                    console.log(data.data());
+                    courserBeingTaken = data.data().courses.split(` `);
+                    var address = data.data().address.split(',');
+                    var addressViews = document.getElementsByClassName('address');
+
+                    for(let cntr = 0; cntr < address.length; cntr ++){
+                        addressViews[cntr].innerText = address[cntr]; 
+                    }
+
+
+                    var education = data.data().education.split(',');
+                    var email = data.data().email;
+                    var employment = data.data().employment;
+                    var name = data.data().name;
+
+                    
+                    console.log(courserBeingTaken);
+
+                    if ((courserBeingTaken.length !== 0)) {
+                        for (let course of courserBeingTaken) {
+                            if (course != "") {
+                                enrolledPrograms.innerHTML += `
+                                <div class="rectangle">
+                                <h3>${course}</h3>
+                                <p>${fetchContent(String(course))}</p>
+                                <button onclick="createCookie(${uidLength})">Continue</button>
+                                <button onclick="exitClass('${course}')">Exit Course</button>
+                                </div>
+                                `;
+                            }
+                        }
+                    }
+                    if (courserBeingTaken.length !== 0) {
+                        document.getElementById("nothing").style.display = "none";
+                    }
+                }).catch(err => {
+                   // alert(err);
+                    console.log(err);
+                })
+            } catch (err) {
+
+            }
+            document.cookie = "_hush="+userId;
+        }
+
+        function switchTabFor(NUMBER){
+            var tabs = document.getElementsByClassName("tab");
+            for(let tab of tabs){
+                tab.style.display = "none";
+            }
+            tabs[NUMBER].style.display = "block";
+        }
+        function logout(){
+            firebase.auth().signOut().then(()=>{
+                location.href = `signinup.html`;
+            }).catch(err=>{
+
+            })
+        }
+
+        function startAccountControlSession(){
+            var parent = document.getElementById("accountcontrol");
+            var child = document.getElementById("center");
+
+            parent.style.display = "block";
+            child.style.display = "flex";
+
+        }
+        function endAccountControlSession(){
+            var parent = document.getElementById("accountcontrol");
+            var child = document.getElementById("center");
+
+            parent.style.display = "none";
+            child.style.display = "none";
+
+        }
+        function populateUserImages(){
+            firebase.storage().ref().child(String(userId)).getDownloadURL().then((url)=>{
+                document.getElementById("userprofilepicture").style.backgroundImage = `url(${url});`;
+                document.getElementById("userProfile").style.backgroundImage = `url(${url});`;
+            }).catch(error=>{
+
+            })
+        }
+
+
+        function exitClass(newClass) {
+            var stringCourse = "";
+            console.log(stringCourse);
+            for( var i = 0; i < courserBeingTaken.length; i++){ 
+                    if ( courserBeingTaken[i] === String(newClass)) { 
+                        courserBeingTaken.splice(i, 1); 
+                    }
+            }
+            
+            for (let course of courserBeingTaken) {
+                stringCourse += course + " ";
+            }
+            // document.getElementById("loader").style.display = "block";
+            db.collection('users').doc(userId).set({
+            courses: stringCourse
+            }).then(() => {
+            // document.getElementById("loader").style.display = "none";
+            document.cookie = "nick="+userId;    
+            location.href = `lessons.html`;
+            });
+            
+        }
+
+
+
+
+
+         </script>
+</body>
+</html>
