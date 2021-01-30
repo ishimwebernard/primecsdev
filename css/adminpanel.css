@@ -3,15 +3,185 @@
     margin: 0;
     padding: 0;
 }
+html{
+    height: 650px;
+    width: 100%;
+}
 .content{
     display: grid;
     grid-template-columns: 1fr 4fr;
+    height: 650px;
+    width: 100%;
+}
+button{
+    background: linear-gradient(180deg, rgb(214, 214, 214), rgb(197, 197, 197));
+    padding: 10px;
+    font-weight: 600;
+    border:1px rgb(139, 139, 139) solid;
+    border-radius: 5px;
+    text-shadow: 0.5px 0.5px rgb(245, 245, 245);;
 }
 .navigator{
     display: flex;
     flex-direction: column;
+    background: linear-gradient(180deg, rgb(66, 66, 66), rgb(146, 146, 146))
+
 
 }
 .navigator .fastPres{
+    padding: .5rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
+.navigator .fastPres span{
+    font-weight: 300;
+    font-size: 1rem;
+}
+.navigator .navItem{
+    background: linear-gradient(180deg, rgb(27, 107, 212),  rgb(29, 80, 146));
+    padding: .5rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+}
+.navigator .navItem:hover{
+    background: linear-gradient(180deg, rgb(7, 228, 55), rgb(6, 146, 37));
+}
+.main .captain{
+    animation-name: FLIP_TAB;
+    animation-duration: 1s;
+}
+.main .captain .trippleCards{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 80%;
+    margin-left: 10%;
+}
+.main .captain .trippleCards .card{
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: inset 6px 6px 12px #ebebeb, 
+                inset -6px -6px 12px #ffffff;
+width: 80%;
+padding: 10px;             
+text-align: center;
+border: 1px rgb(224, 224, 224) solid;
+}
+.main .captain .trippleCards .card .number{
+    font-weight: 700;
+    font-size: 4rem;
+    color: rgb(163, 163, 163);
+}
+.main .captain .trippleCards .card .use{
+    font-weight: 300;
+    color: rgb(129, 129, 129);
+}
+.main .captain .broadcasts{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+.main .captain .broadcasts .broadcast{
+    border-radius: 14px;
+background: #ffffff;
+box-shadow:  6px 6px 12px #ebebeb, 
+             -6px -6px 12px #ffffff;
+width: 80%;  
+padding-left: 1%;      
+border-left:20px rgb(206, 206, 206) solid;
+margin-top: 10px;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.main .captain .broadcasts .title{
+    padding: 2px;
+    font-weight: 700;
+
+}
+.main .captain .broadcasts .contexter{
+    margin-left: 10%;
+    color: rgb(156, 156, 156);
     
 }
+.main .presenter{
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: rgb(29, 80, 146);
+}
+.main .captain .application{
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow:  6px 6px 12px #ebebeb, 
+                 -6px -6px 12px #ffffff;
+    width: 80%;  
+    padding-left: 1%;      
+    border-left:20px rgb(7, 228, 55) solid;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+.main .captain .application .sender{
+    font-weight: 700;
+    color: rgb(110, 110, 110);
+
+}
+@keyframes TAB_FLIP{
+    from{left: -100%;}
+    to{left: 0;}
+}
+.backer{
+    position: fixed;
+    background: #000;
+    opacity: 40%;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: none;
+    
+}
+.applicationiViewer{
+    position: fixed;
+    z-index: 1;
+    width: 80%;
+    height: 80%;
+    background: #fff;
+    top: 10%;
+    left: 10%;
+    border-radius: 20px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+.applicationiViewer .applicationrecord{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 10px;
+}
+.applicationiViewer .applicationrecord .attrib{
+    color: #000;
+    font-weight: 700;
+}
+.applicationiViewer .applicationrecord:hover{
+    background: linear-gradient(180deg, rgb(226, 226, 226), rgb(161, 161, 161));
+
+}
+.applicationiViewer .controls{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    width: 100%;
+}
+
+
+
+

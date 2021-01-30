@@ -5,15 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/adminpanel.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="../js/adminpanel.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700&display=swap" rel="stylesheet"> 
     <title>Admin Panel</title>
 </head>
 <body>
+    <div class="backer"></div>
+    <div class="applicationiViewer" id="applicationViewer">
+       <div class="controls">
+        <p class="applicant">Application Status</p>
+        <div class="buttons">
+            <button onclick="admitApplication()">Admit</button>
+        <button onclick="rejectApplication()">Reject</button>
+        <button onclick="closeAplication()">Close</button>
+        </div>
+       </div>
+
+        <div class="applicationrecord">
+            <p class="attrib">SOME ATTRIB</p>
+            <p class="value">SOME VALUE</p>
+        </div>
+    </div>
     <div class="content">
         <div class="navigator">
-            <p class="fastPres">PRIMECS</p>
-            <p class="navItem">Dashboard</p>
-            <p class="navItem">Applications</p>
+            <p class="fastPres">PRIMECS <span>Admin</span></p>
+            <p class="navItem" onclick="switchTab(0)">Dashboard</p>
+            <p class="navItem" onclick="switchTab(1)">Applications</p>
             
         </div>
         <div class="main">
@@ -37,18 +54,118 @@
                         <p class="use">Courses</p>
                     </div>
                 </div>
+                <p class="presenter">Broadcasts sent</p>
                 <div class="broadcasts">
-                    <p class="title">Some title and title</p>
-                    <p class="title">Some title and title</p>
-                    <p class="title">Some title and title</p>
-                    <p class="title">Some title and title</p>
-                    <p class="title">Some title and title</p>
-                </div>
-            </div>
-            <div class="captain" id="applications">
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
 
+                    </div>
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
+
+                    </div>
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
+
+                    </div>
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
+
+                    </div>
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
+
+                    </div>
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
+
+                    </div>
+                    <div class="broadcast">
+                        <p class="title">Required fees for the next semester</p>
+                        <p class="contexter">Some contexter text and everything needed</p>    
+
+                    </div>
+                    </div>
+                </div>
+                <div class="captain" id="applications">
+                    <p class="presenter">Applications sent to PRIMECS</p>
+                    
+                    </div>
             </div>
+            </div>
+           
         </div>
-    </div>
+   
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+<script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDV8mW8bweN6YOg0OKgRZ9umOVs_UUN-pA",
+      authDomain: "primecs-1cbfc.firebaseapp.com",
+      projectId: "primecs-1cbfc",
+      storageBucket: "primecs-1cbfc.appspot.com",
+      messagingSenderId: "33832366036",
+      appId: "1:33832366036:web:cc0d5c26b3c1b4690ff041",
+      measurementId: "G-ETGHB4KYQF"
+    };
+    firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+let allUsers = [];
+let _Object;
+const applications = document.getElementById('applications');
+loadApplications();
+function loadApplications(){
+    firebase.firestore().collection('users').get().then((qsnapShot)=>{
+        qsnapShot.forEach((doc)=>{
+            console.log(doc.data());
+            applications.innerHTML += `
+            <div class="application" onclick="openApplication('${doc.data().emailAddress}')">
+                        <p class="sender">${doc.data().firstName} ${doc.data().secondName}</p>
+                        <p class="date">${doc.data()._date}</p>
+                    </div>
+            `;
+            allUsers.push(doc.data());
+        })
+    })
+}
+function openApplication(email){
+
+     for(let user of allUsers){
+         console.log(user);
+         if(user.emailAddress == email){
+            _Object = user;
+         }
+     }
+     console.log(_Object);
+     let _ObjectArray = Object.entries(_Object);
+     let applicationViewer = document.getElementById('applicationViewer');
+     let backer = document.getElementsByClassName('backer')[0];
+     console.log(backer);
+    for(let i=0; i< _ObjectArray.length; i++){
+        let target = _ObjectArray[i];
+        applicationViewer.innerHTML += `
+        <div class="applicationrecord">
+            <p class="attrib">${target[0]}</p>
+            <p class="value">${target[1]}</p>
+        </div>
+        `;
+    }
+    applicationViewer.style.display = "flex";
+    backer.style.display = "block";
+
+}
+function closeAplication(){
+    let applicationViewer = document.getElementById('applicationViewer');
+     let backer = document.getElementsByClassName('backer')[0];
+    applicationViewer.style.display = "none";
+    backer.style.display = "none";
+}
+  </script>  
 </body>
 </html>
