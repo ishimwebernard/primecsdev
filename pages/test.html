@@ -1,5 +1,4 @@
 <script>
-    let 
      fetch('./emailTemplate.html').then(response=> response.text()).then((contents)=>{
         emailTemplate = String(contents).replace('{{email}}', _Object.emailAddress).replace('{{name}}', _Object.firstName);
         alert(contents);
