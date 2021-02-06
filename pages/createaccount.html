@@ -10,7 +10,12 @@
 </head>
 <body>
     <div class="content">
-        <div class="filler"></div>
+        <div class="filler" id="filler"></div>
+        <div class="sending" id="sending">
+            <h1>Sending Application</h1>
+            <progress id="progressSending" value="0" max="100"></progress>
+        </div>
+        
         <div class="verifyYourInfo" id="verifyYourInfo">
             <h1>Please verify your information before submitting</h1>
             <div class="checkItems" id="checkItems">
@@ -322,8 +327,8 @@
                     <div class="realfiles">
                         <input type="file" accept="image/png, image/jpeg, pdf" id="someCv" hidden>
                     <label for="someCv" id="cvlabel">CV</label>
-                    <input type="file" accept="image/png, image/jpeg" id="apletter" hidden>
-                    <label for="cv" id="apleterlabel">Application Letter</label>
+                    <input type="file" accept="image/png, image/jpeg, pdf" id="applicationLetter" hidden>
+                    <label for="applicationLetter">Application letter</label>
                     <input type="file" accept="image/png, image/jpeg, pdf" id="paymentReceipt" hidden>
                     <label for="paymentReceipt" id="paymentLabel">Payment Receipt</label>
                     </div>

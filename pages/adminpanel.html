@@ -25,6 +25,7 @@
             <p class="attrib">SOME ATTRIB</p>
             <p class="value">SOME VALUE</p>
         </div>
+        
     </div>
     <div class="content">
         <div class="navigator">
@@ -101,8 +102,8 @@
             </div>
            
         </div>
-   
-<script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
 <script>
     var firebaseConfig = {
@@ -123,14 +124,17 @@ loadApplications();
 function loadApplications(){
     firebase.firestore().collection('users').get().then((qsnapShot)=>{
         qsnapShot.forEach((doc)=>{
-            console.log(doc.data());
+            // console.log(doc.data());
+            let additionDoc = doc.data();
             applications.innerHTML += `
             <div class="application" onclick="openApplication('${doc.data().emailAddress}')">
                         <p class="sender">${doc.data().firstName} ${doc.data().secondName}</p>
                         <p class="date">${doc.data()._date}</p>
                     </div>
             `;
-            allUsers.push(doc.data());
+            additionDoc.id = doc.id;
+            console.log(additionDoc);
+            allUsers.push(additionDoc);
         })
     })
 }
@@ -147,6 +151,20 @@ function openApplication(email){
      let applicationViewer = document.getElementById('applicationViewer');
      let backer = document.getElementsByClassName('backer')[0];
      console.log(backer);
+     applicationViewer.innerHTML = "";
+     applicationViewer.innerHTML += `  <div class="controls">
+        <p class="applicant">Application Status</p>
+        <div class="buttons">
+            <button onclick="admitApplication()">Admit</button>
+        <button onclick="rejectApplication()">Reject</button>
+        <button onclick="closeAplication()">Close</button>
+        </div>
+       </div>
+
+        <div class="applicationrecord">
+            <p class="attrib">SOME ATTRIB</p>
+            <p class="value">SOME VALUE</p>
+        </div>`;
     for(let i=0; i< _ObjectArray.length; i++){
         let target = _ObjectArray[i];
         applicationViewer.innerHTML += `
@@ -166,6 +184,74 @@ function closeAplication(){
     applicationViewer.style.display = "none";
     backer.style.display = "none";
 }
+
+function sendEmailAdmission() { 
+    let _EMAIL_TEMPLATE;
+        _EMAIL_TEMPLATE = String(emailTemplate()).replaceAll('{{email}}', _Object.emailAddress).replaceAll('{{name}}', _Object.firstName);
+        sendEmail("Primecs Education Admission decision", `${_EMAIL_TEMPLATE}`, `${_Object.emailAddress}`);
+    
+    } 
+    function admitApplication(){
+        let admittedUser = _Object;
+        admittedUser.admitted = true;
+        firebase.auth().createUserWithEmailAndPassword(_Object.emailAddress, _Object.emailAddress)
+        .then((user)=>{
+            sendEmailAdmission();
+        }).catch((error)=>{
+            alert('User already exists');
+        });
+        firebase.firestore().collection('users').doc(_Object.id).set(admittedUser).then(()=>{
+            alert('User admitted succesfully');
+        })
+    }
+    function sendEmail(subject, body, email){
+   Email.send({
+       SecureToken : "8531b78b-25d0-4eb7-88d7-9eb75712f7a5",
+       To : `${email}`,
+       From : "primecseducation@gmail.com",
+       Subject : `${subject}`,
+       Body : `${body}`,
+   }).then(
+     message => alert(message)
+   );
+}
+function emailTemplate(){
+    let retval = `
+
+        <h1>Welcome to PRIMECS EDUCATION</h1>
+        <p class="main">
+            Hello {{name}}<br><br>
+            We are thrilled to inform you that you have been selected to enroll in any course you need through primecs education<br>
+            We have provided you with the default email and password. You will be requested to change the password to your preferences<br><br>
+            Username: {{email}}<br>
+            Password: {{email}}<br>
+
+        </p>
+        <div class="footer">
+            <p><i>Primecs Education Community</i></p>
+            <p><i></i></p>
+        </div>`;
+return retval;
+}
+function userRejectionTemplate(){
+    let retval = `Dear {{name}},
+
+Thank you for your interest in Graduate Studies at PrimECS Education. We received many interesting and excellent applications, only some of which we were able to accept this year. We reviewed your application very carefully and note several strong features. There is rigorous competition for entry into our graduate programs and your application was not among those that we were able to accept.
+<br>
+We encourage you to apply to other graduate schools and we wish you every success with your studies and beyond.
+<br>
+Yours truly,
+Primecs Education Group`;
+return retval;
+}
+function rejectApplication(){
+   firebase.firestore().collection('users').doc(_Object.id).delete().then(()=>{
+    sendEmail("Primecs Education Admission Decision", String(userRejectionTemplate()).replaceAll("{{name}}", _Object.firstName), _Object.emailAddress);
+   }).catch((error)=>{
+       alert(error);
+   })
+}
+
   </script>  
 </body>
 </html>

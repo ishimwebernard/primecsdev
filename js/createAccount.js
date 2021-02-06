@@ -12,6 +12,9 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
   let User;
+  let filler = document.getElementById('filler');
+  let sending = document.getElementById('sending');
+  let progressSending = document.getElementById('progressSending');
 
 // const timeline = new TimelineMax();
 FlipTab(0);
@@ -39,7 +42,7 @@ function i(v){
 function sendApplication(){
  User = {
 admitted: false,
-applicationLetter: "i('apleterlabel')",
+applicationLetter: i('applicationLetter'),
 // Architecture : document.getElementById('architechture').checked,
 areasExcel1: i('areasExcel1'),
 areasExcel2: i('areasExcel2') ,
@@ -54,7 +57,7 @@ citizenship: i('citizenship'),
 city: i('city'),
 companyName: i('companyName'),
 construction: i('construction'),
-cv:"someCv",//file
+cv: i('someCv'),//file
 dateOfBirth: i('dateOfBirth'),
 emailAddress: i('emailAddress'),
 engineering: i('engineering'),
@@ -119,11 +122,51 @@ function allowCheck(){
     document.getElementsByClassName('verifyYourInfo')[0].style.display = 'none';
 }
 
-function transferApplication(userObject){
+async function transferApplication(userObject){
+    filler.style.display = "block";
+    sending.style.display = "block";
+    progressSending.value = 10;
     let db = firebase.firestore();
-    let documentName = `${userObject.firstName}` + `${userObject.secondName}` + `${String(new Date).replace(' ', '')}`;
-    db.collection('users').doc(documentName).set(userObject).then(()=>{
-        alert(`Application received`);
+    let applicationLetter = document.getElementById('applicationLetter').files[0];
+    let paymentReceipt = document.getElementById('paymentReceipt').files[0];
+    let someCV = document.getElementById('someCv');
+
+    console.log(userObject);
+
+    await firebase.storage().ref().child(`${userObject.emailAddress}_application_letter`).put(applicationLetter).then((snapshot)=>{
+        snapshot.ref.getDownloadURL().then((url)=>{
+            userObject.applicationLetter = url;
+            progressSending.value = 25;
+        })
+    }).catch((error)=>{
+        console.log(error);
+       return alert('Application not sent',error);
+    });
+    //Uploading the payment receipt
+    await firebase.storage().ref().child(`${userObject.emailAddress}_payment_receipt`).put(paymentReceipt).then((snapshot)=>{
+        snapshot.ref.getDownloadURL().then((k)=>{
+            progressSending.value = 50;
+            userObject.paymentReceipt = k;
+        })
+    }).catch((error)=>{
+        console.log(error);
+        return alert('Application not sent',error);
+    });
+    await firebase.storage().ref().child(`${userObject.emailAddress}_cv`).put(someCV).then((snapshot)=>{
+        snapshot.ref.getDownloadURL().then((returnedCVPath)=>{
+            progressSending.value = 75;
+            userObject.cv = returnedCVPath;
+        })
+    }).catch((error)=>{
+        console.log(error);
+        return alert('Application not sent',error);
+    });
+
+    await db.collection('users').add(userObject).then(()=>{
+        progressSending.value = 100;
+        filler.style.display = "none";
+        sending.style.display = "none";
+        return alert(`Application received`);
     });
 }
 

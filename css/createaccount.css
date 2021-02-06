@@ -38,6 +38,22 @@ button{
     
 
 }
+#sending{
+    position: fixed;
+    z-index: 11;
+    background: #fff;
+    margin-left: 35%;
+    margin-top: 10rem;
+    width: 20%;
+    padding: 4rem;
+    text-align: center;
+    border: 1px rgb(202, 202, 202) solid;
+    display: none;
+}
+#sending progress{
+    width: 80%;
+    margin-top: 10px;
+}
 
 #menu .col1{
     background: #fff;
