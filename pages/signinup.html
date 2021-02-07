@@ -139,7 +139,7 @@
         document.getElementById("loader").style.display = "block";
 	firebase.auth().signInWithEmailAndPassword(signEmail.value, signPassword.value)
   .then((user) => {
-    document.cookie = `nick=${user.user.uid}`;
+    document.cookie = `nick=${signEmail.value}`;
     location.href="../pages/aftersigninnew.html";
     document.getElementById("loader").style.display = "block";
 

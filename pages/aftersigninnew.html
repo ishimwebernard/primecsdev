@@ -10,6 +10,80 @@
 </head>
 <body>
     <div class="content">
+        <div class="backer" id="backer"></div>
+        <div class="lessonOpened" id="lessonOpened">
+            <div class="controls">
+                <h2 class="lessonName" id="part">LESSON NAME</h2>
+                <button onclick="closeSubject()">Close Subject</button>
+            </div>
+            <div class="main">
+                <div class="lessonNavigator">
+                    <p class="lessonNav" onclick="switchSubject(0)">Schedule Details</p>
+                    <p class="lessonNav" onclick="switchSubject(1)">Download Files</p>
+                    <p class="lessonNav" onclick="switchSubject(2)">Lecture Videos</p>
+                </div>
+                <div class="lessonMain" id="scheduleDetails">
+                    <div class="indicator">
+                        <p>Date</p>
+                        <p>Chapter</p>
+                        <p>Teacher</p>
+                    </div>
+                    <div class="scDetail">
+                        <p class="scheduleDate">1-1-2000</p>
+                        <p class="scheduleChapter">Mechanics of structures</p>
+                        <p class="scheduleTeacher">Prince</p>
+    
+                    </div>
+                    <div class="scDetail">
+                        <p class="scheduleDate">1-3-2000</p>
+                        <p class="scheduleChapter">Plane Trusses</p>
+                        <p class="scheduleTeacher">Murara</p>
+    
+                    </div>
+                    <div class="scDetail">
+                        <p class="scheduleDate">1-5-2000</p>
+                        <p class="scheduleChapter">Statistical indeterminacy of trusses</p>
+                        <p class="scheduleTeacher">Murara</p>
+    
+                    </div>
+                    <div class="scDetail">
+                        <p class="scheduleDate">1-7-2000</p>
+                        <p class="scheduleChapter">SMain types of trusses</p>
+                        <p class="scheduleTeacher">Murara</p>
+    
+                    </div>
+                </div>
+                <div class="lessonMain" id="downloadFiles">
+                    <div class="download">
+                        <a href="">Integral Calculus</a>
+                        <p class="downloadDetail">This is for you to get familiar with laplace transform</p>
+                    </div>
+                    <div class="download">
+                        <a href="">Integral Calculus</a>
+                        <p class="downloadDetail">This is for you to get familiar with laplace transform</p>
+                    </div>
+                    <div class="download">
+                        <a href="">Integral Calculus</a>
+                        <p class="downloadDetail">This is for you to get familiar with laplace transform</p>
+                    </div>
+                </div>
+                <div class="lessonMain" id="lectureVideos">
+                    <div class="video">
+                        <p class="startLetter">T</p>
+                        <p class="videoName">Theory Of Structures</p>
+                    </div>
+                    <div class="video">
+                        <p class="startLetter">M</p>
+                        <p class="videoName">Mechanics of Trusses</p>
+                    </div>
+                    <div class="video">
+                        <p class="startLetter">S</p>
+                        <p class="videoName">Shear Stress Diagrams</p>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
         <div class="row1">
             <div class="logoholder">
                 <img src="../assets/images/logolearning.png" alt="">
@@ -141,33 +215,11 @@
            </div>
            <div class="tab" id="dashboard">
                 <h2>Dashboard</h2>
-                <h3 class="subtitle">My Active Courses</h3>
-                <div class="cardsContainer" id="enrolledPrograms">
-                </div>
-                <h3 class="subtitle">Completed Courses</h3>
-                <div class="cardsContainer" >
-                    <div class="rectangle">
-                        <h3>AEC360 Business</h3>
-                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
-                        <button onclick="enroll(`AEC360 Business`)">Enroll</button>
-                    </div>       
-                    <div class="rectangle">
-                        <h3>AEC360 Professional</h3>
-                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
-                        <button onclick="enroll(`AEC360 Professional`)">Enroll</button>
-                    </div> 
-                    <div class="rectangle">
-                        <h3>AEC360 Executive
-                        </h3>
-                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
-                        <button onclick="enroll(`AEC360 Executive`)">Enroll</button>
-                    </div> 
-                    <div class="rectangle">
-                        <h3>AEC360 Custom
-                        </h3>
-                        <p>A business is defined as an organization or enterprising entity engaged in commercial, industrial, or professional activities. Businesses can be for-profit entities or they can be non-profit organizations that operate to fulfill a charitable </p>
-                        <button onclick="enroll(`AEC360 Custom`)">Enroll</button>
-                    </div> 
+                
+                <h3 class="subtitle">My Courses</h3>
+                <div class="cardsContainer" id="yourCourses" >
+                          
+                
                 </div>
            </div>
            <div class="tab" id="help">
@@ -212,6 +264,57 @@
            </div>
                </div>
            </div>
+           <!-- <div class="tab" id="someSubject">
+               <h2>Course Name</h2>
+            <div class="profilenavigator">
+                <div class="leftnav">
+                    
+                    <div class="navitem" onclick="">
+                        <img src="../assets/images/person_simple.png" alt="">
+                        <p>Schedule Infornation</p>
+                    </div>
+                    <div class="navitem" onclick="">
+                        <img src="../assets/images/contact_info.png" alt="">
+                        <p>Downloadable Files</p>
+                    </div>
+                    <div class="navitem" onclick="">
+                        <img src="../assets/images/course_info.png" alt="">
+                        <p>Lecture videos</p>
+                    </div>
+                   
+                </div>
+                
+                
+                <div class="courseNavigator">
+                    
+                        <div class="tableClassRecord">
+                            <p class="endDate">End Date</p>
+                            <p class="chapterName">Chapter Name</p>
+                            <p class="lecturer">Some kinda Lecturer</p>
+                            
+                        </div>
+                        <div class="tableClassRecord">
+                            <p class="endDate">1-3-2000</p>
+                            <p class="chapterName">Analyisis of stuctures</p>
+                            <p class="lecturer">Prince</p>
+                            
+                        </div>
+                </div>
+                <div class="courseNavigator">
+                    <div class="downloadFile">
+                        <a href="somesome">Theory of computation</a>
+                        <p class="teacher">Mr Bobby Wine</p>
+                    </div>
+                </div>
+                <div class="courseNavigator">
+                    <div class="video">
+                        <a href="somesome">Theory of computation</a>
+                        <p class="teacher">Mr Bobby Wine</p>
+                    </div>
+                </div>
+                
+            </div>
+           </div> -->
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineMax.min.js" integrity="sha512-lJDBw/vKlGO8aIZB8/6CY4lV+EMAL3qzViHid6wXjH/uDrqUl+uvfCROHXAEL0T/bgdAQHSuE68vRlcFHUdrUw==" crossorigin="anonymous"></script>
@@ -243,6 +346,7 @@
         var userId;
         var courserBeingTaken;
         var globalUserId;
+        let activeUser;
 
 
 
@@ -260,35 +364,13 @@
             const TWEENTL = new TimelineMax();
             TWEENTL.fromTo(MAIN_PART, .35, {x: "100%"},{x:"0%"});
         }
-        // var choosefile = document.getElementById("choosefile").onchange = function(){
-        //     var storageRef = firebase.storage().ref();
-        //     var userStorageRef = storageRef.child(String(userId));
-
-        //     const selectedFile = document.getElementById('choosefile').files[0];
-        //     document.getElementById("loader").style.display = "block";
-        //     userStorageRef.put(selectedFile).then(function(snapshot) {
-        //         endAccountControlSession();
-                
-        //         const fileDirectory = snapshot.ref.getDownloadURL().then(url=>{
-        //             console.log(url);
-        //             populateUserImages();
-        //             document.getElementById("loader").style.display = "none";
-        //         }).catch(error=>{
-        //             alert(error);
-        //             console.log(error);
-        //         })
-        //     }).catch(error=>{
-        //         alert(String(error));
-        //         console.log(error);
-        //     });
-
-        // };
-
+        let counterFullCourses = 0;
+        let coursesTaken = [];
 
          switchTabFor(1);
         loadUserClasses();
         populateUserImages();
-
+        let yourCourses = document.getElementById('yourCourses');
         function loadUserClasses() {
             var enrolledPrograms = document.getElementById("enrolledPrograms");
             var cookies = document.cookie
@@ -301,95 +383,23 @@
 
             console.log(`Starting retrieving`);
             console.log(cookies);
-
-            userId = String(cookies.nick);
-            var uidLength = userId.split(``).length;
-
-            document.cookie = "nick=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-
-            if ((userId == "undefined") && (globalUserId == "")) {
-                location.href = 'signinup.html';
-
-            } else {
-                globalUserId = userId;
-                try {
-                    // document.getElementById("loader").style.display = "block";
-
-
-
-                    db.collection('users').doc(userId).get().then((data) => {
-                        // document.getElementById("loader").style.display = "none";
-                        courserBeingTaken = data.data().courses.trim().split(` `);
-                        var datesOfEnrollment = data.data().enrollmentdate.split(',');
-                        console.log(courserBeingTaken);
-                        var address = data.data().address.split(',');
-                        var addressViews = document.getElementsByClassName('address');
-
-                    for(let cntr = 0; cntr < address.length; cntr ++){
-                        addressViews[cntr].value = address[cntr]; 
-                    }
-                    
-
-                    var education = data.data().education.split(',');
-                    var educationViews = document.getElementsByClassName("education");
-                    for(let cntr = 0; cntr < education.length; cntr ++){
-                        educationViews[cntr].value = education[cntr];
-                    }
-
-                    var email = data.data().email;
-                    document.getElementById('email').innerText = email;
-
-                    var employment = data.data().employment.split(',');
-                    var employmentViews = document.getElementsByClassName('employment');
-                    for(let c = 0; c< employment.length; c++){
-                        employmentViews[c].value = employment[c];
-                    }
-                    var name = data.data().name;
-                    document.getElementById('name').innerText = name;
-                    
-
-
-                        if ((courserBeingTaken.length !== 0)) {
-                            for (let course of courserBeingTaken) {
-                                if (course != "") {
-                                enrolledPrograms.innerHTML += `
-                                <div class="rectangle">
-                                <h3>${course}</h3>
-                                <p>${fetchContent(String(course))}</p>
-                                <button onclick="createCookie(${uidLength})">Continue</button>
-                                <button onclick="exitClass('${course}')">Exit Course</button>
-                                </div>
-                                `;
-                                document.getElementById('courseInformation').innerHTML += `
-                                <div class="set">
-                        <p class="identifier">${course}</p>
-                        <p class="value">$1212</p>
-                    </div>`
-                                ;
-                                    //  document.getElementById("enrollmentCLASSES").innerHTML+=`
-
-                                    //  <div class="enrollmentClass">
-                                    // <p>${course}</p>
-                                    //  </div>
-                                    // `;
-                                 
-                                }
-
-                            }
-                        }
-
-                        // if (courserBeingTaken.length !== 0) {
-                        //     document.getElementById("nothing").style.display = "none";
-                        // }
-
-                    }).catch(err => {
-                        //alert(err+"Line 239");
-                    })
-                } catch (err) {
-                    console.log(err);
-                }
-            }
             document.cookie = "_hush="+userId;
+            firebase.firestore().collection('activeUsers').get().then((snapshot)=>{
+                snapshot.forEach((doc)=>{
+                    if(doc.data().owner == cookies.nick){
+                        coursesTaken.push(doc.data());
+                        yourCourses.innerHTML += `
+                        <div class="rectangle">
+                        <h3>${doc.data().courseName}</h3>
+                        <p class="from">From: ${doc.data().startDate}</p>
+                        <p class="to">To: ${doc.data().expiryDate}</p>
+                        <button onclick="openSubject()">Continue Course</button>
+                    </div>
+                        `;
+                        counterFullCourses += 1;
+                    }
+                })
+            })
         }
 
         function createCookie(uidLength) {
@@ -397,95 +407,6 @@
             location.href = `aec360p.html`;
             console.log(document.cookie);
             console.log(`Called`);
-        }
-
-        function enroll(newClass) {
-            var stringCourse = "";
-            var isEnrolled = false;
-            console.log(courserBeingTaken);
-            for (let course of courserBeingTaken) {
-                stringCourse += course + " ";
-                if (course == String(newClass).replaceAll(` `, `_`)) {
-                    isEnrolled = true;
-                }
-            }
-            console.log(stringCourse);
-            stringCourse += String(newClass).replaceAll(` `, `_`);
-            if (!isEnrolled) {
-                // document.getElementById("loader").style.display = "block";
-                db.collection('users').doc(userId).set({
-                    courses: stringCourse
-                }).then(() => {
-                    // document.getElementById("loader").style.display = "none";
-                    document.cookie = "nick="+userId;    
-            location.href = `lessons.html`;
-                });
-            } else {
-                alert(`Already Enrolled`);
-            }
-            //loadUserClassesWithParam(userId); 
-        }
-
-        function fetchContent(subject) {
-            var descriptionObject = {
-                AEC360_Business: "A company, abbreviated as co., is a legal entity representing an association of people, whether natural, legal or a mixture of both, with a specific objective. ",
-                AEC360_Custom: " It is the custom to give gifts at Christmas time. Habit, applied particularly to an individual, implies such repetition of the same action as to develop a natural, spontaneous, or rooted tendency or inclination to perform it: to make a habit of reading the newspapers. Practice applies to a set of fixed habits or an ordered procedure in conducting activities: It is his practice to verify all statements.",
-                AEC360_Executive: "The executive is the branch of government exercising authority in and holding responsibility for the governance of a state. The executive executes and enforces law.",
-                AEC360_Professional: "A profession is an occupation founded upon specialized educational training, the purpose of which is to supply disinterested objective counsel and service to others, for a direct and definite compensation, wholly apart from expectation of other business gain.",
-            }
-            return descriptionObject[subject];
-        }
-
-        //FUNCTION TO RELOAD DATA FROM DATABASE AFTER ENROLLMENT
-        //IT SHOULD ALSO HAVE TO MANIPULATE VIEWS AS THE FIRST FUNCTION
-        function loadUserClassesWithParam(PARAM_USERID) {
-            var enrolledPrograms = document.getElementById("enrolledPrograms");
-            enrolledPrograms.innerHTML = "<small>ENROLLED PROGRAMS</small>";
-            try {
-                db.collection('users').doc(PARAM_USERID).get().then((data) => {
-                    console.log(data.data());
-                    courserBeingTaken = data.data().courses.split(` `);
-                    var address = data.data().address.split(',');
-                    var addressViews = document.getElementsByClassName('address');
-
-                    for(let cntr = 0; cntr < address.length; cntr ++){
-                        addressViews[cntr].innerText = address[cntr]; 
-                    }
-
-
-                    var education = data.data().education.split(',');
-                    var email = data.data().email;
-                    var employment = data.data().employment;
-                    var name = data.data().name;
-
-                    
-                    console.log(courserBeingTaken);
-
-                    if ((courserBeingTaken.length !== 0)) {
-                        for (let course of courserBeingTaken) {
-                            if (course != "") {
-                                enrolledPrograms.innerHTML += `
-                                <div class="rectangle">
-                                <h3>${course}</h3>
-                                <p>${fetchContent(String(course))}</p>
-                                <button onclick="createCookie(${uidLength})">Continue</button>
-                                <button onclick="exitClass('${course}')">Exit Course</button>
-                                </div>
-                                `;
-                            }
-                        }
-                    }
-                    if (courserBeingTaken.length !== 0) {
-                        document.getElementById("nothing").style.display = "none";
-                    }
-                }).catch(err => {
-                   // alert(err);
-                    console.log(err);
-                })
-            } catch (err) {
-
-            }
-            document.cookie = "_hush="+userId;
         }
 
         function switchTabFor(NUMBER){
@@ -550,6 +471,23 @@
             location.href = `lessons.html`;
             });
             
+        }
+        function switchSubject(n){
+            const mainnavs = document.getElementsByClassName('lessonMain');
+            for(let mainnav of mainnavs){
+                mainnav.style.display="none";
+            }
+            mainnavs[n].style.display = "flex";
+            animateMain(mainnavs[n]);
+        }
+        function closeSubject(){
+            document.getElementById('lessonOpened').style.display = 'none';
+            document.getElementById('backer').style.display = 'none';
+        }
+        function openSubject(){
+            document.getElementById('lessonOpened').style.display = 'block';
+            document.getElementById('backer').style.display = 'block';
+            switchSubject(0);
         }
 
 

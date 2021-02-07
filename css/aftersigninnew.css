@@ -96,21 +96,21 @@ input{
     from{opacity: 0;x:-100%;}
     to{opacity: 1;x:0;}
 }
-.content .row2 #profile{
+.content .row2 .tab{
     display: flex;
     flex-direction: column;
 }
 
-.content .row2 #profile .profilenavigator{
+.content .row2 .tab .profilenavigator{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3.5fr;
     border: 1px rgb(201, 201, 201) solid;
     margin: 3rem;
 }
-.content .row2 #profile .profilenavigator .leftnav{
+.content .row2 .tab .profilenavigator .leftnav{
     background-color: rgb(243, 243, 243);
 }
-.content .row2 #profile .profilenavigator .leftnav .navitem{
+.content .row2 .tab .profilenavigator .leftnav .navitem{
     padding: 1rem;
     border-bottom: 1px rgb(201, 201, 201) solid;
     border-right: 1px rgb(201, 201, 201) solid;
@@ -118,25 +118,25 @@ input{
     flex-direction: row;
     cursor: pointer;
 }
-.content .row2 #profile .profilenavigator .leftnav .navitem:hover{
+.content .row2 .tab .profilenavigator .leftnav .navitem:hover{
     background: linear-gradient(180deg, #94E132,#76C90E);
 }
-.content .row2 #profile .profilenavigator .leftnav .navitem:last-child{
+.content .row2 .tab .profilenavigator .leftnav .navitem:last-child{
     border-bottom: none;
 }
 
-.content .row2 #profile .profilenavigator .leftnav .navitem p{
+.content .row2 .tab .profilenavigator .leftnav .navitem p{
     margin-left: .5rem;
 }
 
-.content .row2 #profile .profilenavigator .mainnav .profile{
+.content .row2 .tab .profilenavigator .mainnav .profile{
     background: url('../assets/images/person.png');
     width: 3.5rem;
     height: 3.5rem;
     background-size: cover;
     background-repeat: no-repeat;
 }
-.content .row2 #profile .profilenavigator .mainnav{
+.content .row2 .tab .profilenavigator .mainnav{
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -147,26 +147,26 @@ input{
     from{left: -100%}
     to{left: 0}
 }
-.content .row2 #profile .profilenavigator #userInformation{
+.content .row2 .tab .profilenavigator #userInformation{
     display: none;
 }
-.content .row2 #profile .profilenavigator #contactInformation{
+.content .row2 .tab .profilenavigator #contactInformation{
     display: none;
 
 }
 
-.content .row2 #profile .profilenavigator .mainnav .set{
+.content .row2 .tab .profilenavigator .mainnav .set{
     margin-left: 10%;
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: .5rem;
     width:35%;
 }
-.content .row2 #profile .profilenavigator .mainnav .set .value{
+.content .row2 .tab .profilenavigator .mainnav .set .value{
     margin-left: .9rem;
     color: green;
 }
-.content .row2 #profile .profilenavigator .mainnav button{
+.content .row2 .tab .profilenavigator .mainnav button{
     width: 20%;
     margin-top: 2.5rem;
     padding: .3rem;
@@ -175,43 +175,74 @@ input{
     border: 1px green solid;
 
 }
+
 .content .row2 h2{
     margin-left: 3%;
 }
-.content .row2 #profile .profilenavigator .mainnav .InputPair{
+.content .row2 .tab .profilenavigator .mainnav .InputPair{
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-left: 2rem;
 }
-.content .row2 #profile .profilenavigator .mainnav h2{
+.content .row2 .tab .profilenavigator .mainnav h2{
     font-size: 1.2rem;
     color: #233AA9;
     font-weight: 600;
 }
-.content .row2 #profile .profilenavigator  #courseInformation .superSet{
+.content .row2 .tab .profilenavigator  #courseInformation .superSet{
     margin-top: 3rem;
 
 }
-.content .row2 #profile .profilenavigator .mainnav table tr{
+.content .row2 .tab .profilenavigator .mainnav table tr{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.content .row2 #profile .profilenavigator .mainnav table th{
+.content .row2 .tab .profilenavigator .mainnav table th{
     margin:0;
     padding:0;
     text-align: left;
 }
-.content .row2 #profile .profilenavigator .mainnav table tr:first-child{
+.content .row2 .tab .profilenavigator .mainnav table tr:first-child{
     background: linear-gradient(180deg, #233AA9,#0C2084);
     color: #fff;
     padding: 1rem;
 }
-.content .row2 #profile .profilenavigator .mainnav table{
+.content .row2 .tab .profilenavigator .mainnav table{
     border: 1px #dbdbdb solid;
 }
-.content .row2 #profile .profilenavigator .mainnav table tr{
+.content .row2 .tab .profilenavigator .mainnav table tr{
     padding: 1rem;
 }
+.content .row2 .tab .courseNavigator .tableClassRecord{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1.5fr;
+    padding: 10px;
+    cursor: pointer;
+}
+.content .row2 .tab .courseNavigator .tableClassRecord:hover{
+    background: rgb(238, 238, 238);
+}
+
+.content .row2 .tab .courseNavigator .tableClassRecord .endDate{
+    color: #233AA9;
+}
+.content .row2 .tab .courseNavigator .tableClassRecord:first-child p{
+    color: #000;
+    font-weight: 700;
+}
+.content .row2 .tab .courseNavigator .tableClassRecord:first-child:hover{
+    background: transparent;
+}
+.content .row2 .tab .courseNavigator a{
+    text-decoration: none;
+}
+.content .row2 .tab .courseNavigator .downloadFile{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
 .content .row2 #dashboard  .subtitle{
     font-size: 1.2rem;
     color: #233AA9;
@@ -331,6 +362,114 @@ input{
     padding-left: 1rem;
 
 }
+.backer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #000;
+    opacity: 50%;
+    z-index: 1;
+    display: none;
+}
+.lessonOpened{
+    position: fixed;
+    width: 90%;
+    background: #fff;
+    z-index: 2;
+    margin-left: 5%;
+    height: 80%;
+    margin-top: 5%;
+    display: none;
+
+}
+.lessonOpened .main{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    margin: 10px;
+}
+.lessonOpened .main .lessonMain{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.lessonOpened .main .lessonMain .scDetail{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+}
+.lessonOpened .main .lessonMain .scDetail:hover{
+    background: linear-gradient(180deg, rgb(233, 233, 233),rgb(247, 247, 247));
+}
+.lessonOpened .main .lessonMain .indicator{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+    font-weight: 700;
+}
+.lessonOpened .main .lessonMain .download{
+    background: linear-gradient(180deg ,rgb(228, 228, 228), rgb(243, 243, 243));
+    padding: 10px;
+    width: 90%;
+    margin-top: 10px;
+}
+.lessonOpened .main #downloadFiles{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.lessonOpened .main a{
+
+    text-decoration: none;
+    font-weight: 700;
+    color: rgb(16, 64, 153);
+    
+}
+.lessonOpened .main .lessonMain .video{
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    margin-top: 10px;
+}
+.lessonOpened .main .lessonMain .video .startLetter{
+    font-size: 2rem;
+    color: rgb(214, 214, 214);
+    text-align: center;
+    background: rgb(126, 126, 126);
+
+}
+.lessonOpened .main .lessonMain .video .videoName{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+#lectureVideos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.lessonOpened .main .lessonNavigator p{
+    padding: 10px;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+.lessonOpened .main .lessonNavigator p:hover{
+    color: #fff;
+    background: linear-gradient(180deg, rgb(124, 124, 124), rgb(53, 41, 41));
+}
+.lessonOpened button{
+    padding: 10px;
+    background: linear-gradient(180deg, rgb(21, 61, 114), rgb(8, 87, 235));
+    color: #fff;
+    border-radius: 4px;
+    border: none;
+    font-weight: 700;
+    margin-left: 70%;
+}
+.lessonOpened .controls{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+
+
 
 
 

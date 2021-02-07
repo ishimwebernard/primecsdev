@@ -119,6 +119,7 @@
 firebase.analytics();
 let allUsers = [];
 let _Object;
+let endDate = '';
 const applications = document.getElementById('applications');
 loadApplications();
 function loadApplications(){
@@ -133,7 +134,7 @@ function loadApplications(){
                     </div>
             `;
             additionDoc.id = doc.id;
-            console.log(additionDoc);
+            // console.log(additionDoc);
             allUsers.push(additionDoc);
         })
     })
@@ -146,11 +147,11 @@ function openApplication(email){
             _Object = user;
          }
      }
-     console.log(_Object);
+    //  console.log(_Object);
      let _ObjectArray = Object.entries(_Object);
      let applicationViewer = document.getElementById('applicationViewer');
      let backer = document.getElementsByClassName('backer')[0];
-     console.log(backer);
+    //  console.log(backer);
      applicationViewer.innerHTML = "";
      applicationViewer.innerHTML += `  <div class="controls">
         <p class="applicant">Application Status</p>
@@ -221,27 +222,100 @@ function sendEmailAdmission() {
         })
     }
     async function createConcreteCourse(arch, eng, cons){
-       
-            await addToCourse("[1-3-2000, Chapter One, Rupasu]%[2-3-200, Chapter 2, Kibwa]","1-1-2000", "1-1-2005", _Object.emailAddress);
-     
-       
-            await addToCourse("[1-3-2000, Chapter One, Rupasu]%[2-3-200, Chapter 2, Kibwa]","1-1-2000", "1-1-2005", _Object.emailAddress);
+        var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '-' + mm + '-' + yyyy;
+
+            await addToCourse(await generateSchedule('AEC123'),today, endDate, _Object.emailAddress, _Object.id);
+    
+            await addToCourse(await generateSchedule('AEC123'),today, endDate, _Object.emailAddress, _Object.id);
         
-      
-     
-           
-       
     }
-    function addToCourse(scheduleDetails, startDate, expiryDate, owner){
+
+    async function generateSchedule(subjectCode){
+        var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '-' + mm + '-' + yyyy;
+        let studentSchedule = '';
+        await firebase.firestore().collection('subjectDesign').doc(subjectCode).get().then((snapShot)=>{
+            if(snapShot.exists){
+                let chapters = String(snapShot.data().chapters).split("%");
+                let durations = String(snapShot.data().durationsDays).split("%");
+                let teachers = String(snapShot.data().teachers).split("%");
+
+                let datesHierachy = [];
+                let superScheduleString = '';
+                console.log(chapters);
+                console.log(durations);
+                console.log(teachers);
+                for(let i = 0; i< chapters.length; i++){
+                    
+                    let subsetSchedule = '';
+
+                    //Date manipulations
+                    if(i==0){
+                        datesHierachy.push(today);
+                        subsetSchedule += today;
+                    }else{         
+                        subsetSchedule += generateChaperEndDate(durations[i], datesHierachy[i-1]);
+                        datesHierachy.push(generateChaperEndDate(durations[i], datesHierachy[i-1]));
+                    }
+                    subsetSchedule += ',';
+                    subsetSchedule += chapters[i];
+                    subsetSchedule += ',';
+                    subsetSchedule += teachers[i];
+
+                    if(i !== chapters.length-1){
+                        subsetSchedule += '%';
+                        
+                    }else{
+                        endDate = datesHierachy[i];
+                    }
+                    superScheduleString += subsetSchedule;
+                    console.log(subsetSchedule);
+                }
+                studentSchedule = superScheduleString;
+                console.log(datesHierachy);
+
+            }else{
+                studentSchedule = 'No schedule found';
+            }
+        });
+        return studentSchedule;
+    }
+    function extractPercentage(percentExtract){
+        let retval = [];
+        retval = percentExtract.split('%');
+        return retval; 
+    }
+    function generateChaperEndDate(duration, startDate){
+        let destructure = String(startDate).split('-');
+        let initialDate = new Date();
+        let finalDate = new Date();
+       
+        initialDate.setFullYear(destructure[2], destructure[1],destructure[0]);
+        finalDate.setDate(initialDate.getDate() + 30);
+        console.log(`${initialDate} =>`, finalDate);
+        var dd = String(finalDate.getDate()).padStart(2, '0');
+        var mm = String(finalDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = finalDate.getFullYear();
+        finalDate = dd + '-' + mm + '-' + yyyy;
+        return finalDate;
+    }
+    function addToCourse(scheduleDetails, startDate, expiryDate, owner, prId){
         let activateUser = {
             attendance: "[1-3-2000,false]%[2-3-2000,false]",
             courseName: "bvljksjvlbdsbv",
             downloadDocuments: "[CODE1, CODE2]",
-            duration: "4months",
+            duration: "100",
             expiryDate: "1-1-2005",
-            lectureVideos: "[VCODE1, VCODE2]]",
+            lectureVideos: "[VCODE1, VCODE2]",
             owner: "isbernard@gmail.com",
-            profile: "profileid",
+            profile: `${prId}`,
             scheduleDetails: "[1-3-2000, Chapter One, Rupasu]%[2-3-200, Chapter 2, Kibwa]",
             startDate: "1-1-2000"
             }
@@ -249,10 +323,19 @@ function sendEmailAdmission() {
             activateUser.startDate = startDate;
             activateUser.expiryDate = expiryDate;
             activateUser.owner = owner;
-            alert("Starting to add something");
              firebase.firestore().collection('activeUsers').add(activateUser).then(()=>{
-                alert('Added', owner);
             });
+    }
+    function getProfileId(email){
+        let retval;
+        firebase.firestore().collection('users').get().then((snapShot)=>{
+            snapShot.forEach((doc)=>{
+                if(doc.data().emailAddress == email){
+                     retval = doc.id;
+                }
+            })
+        });
+        return retval;
     }
     function sendEmail(subject, body, email){
    Email.send({

@@ -40,9 +40,12 @@ function i(v){
     return document.getElementById(v).value;
 }
 function sendApplication(){
-    let toDay = new Date();
-    let finalDate = toDay.getDay()+"-"+toDay.getMonth()+"-"+toDay.getFullYear();
- User = {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '-' + mm + '-' + yyyy;
+      User = {
 admitted: false,
 applicationLetter: i('applicationLetter'),
 architecture : "option"+document.getElementById('architecture').checked,
@@ -93,7 +96,7 @@ universityDiploma: i('universityDiploma'),
 universityFrom: i('universityFrom'),
 universityGraduate: i('universityGraduate'),
 universityTo: i('universityTo'),
-_date: finalDate
+_date: today
 };
 
 console.log(User);
