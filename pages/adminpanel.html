@@ -192,17 +192,67 @@ function sendEmailAdmission() {
     
     } 
     function admitApplication(){
+    
         let admittedUser = _Object;
         admittedUser.admitted = true;
         firebase.auth().createUserWithEmailAndPassword(_Object.emailAddress, _Object.emailAddress)
         .then((user)=>{
-            sendEmailAdmission();
+            ////////
+            let eng = false, cons = false, arc = false;
+            if(_Object.architecture !== "optionfalse"){
+                arc = true;
+            }
+            if(_Object.construction !== "optionfalse"){
+                cons = true;
+            }
+            if(_Object.engineering !== "optionfalse"){
+                eng = true;
+            }
+             createConcreteCourse(arc, eng, cons).then(()=>{
+                sendEmailAdmission();
+             })
+
+            
         }).catch((error)=>{
             alert('User already exists');
         });
         firebase.firestore().collection('users').doc(_Object.id).set(admittedUser).then(()=>{
             alert('User admitted succesfully');
         })
+    }
+    async function createConcreteCourse(arch, eng, cons){
+       
+            await addToCourse("[1-3-2000, Chapter One, Rupasu]%[2-3-200, Chapter 2, Kibwa]","1-1-2000", "1-1-2005", _Object.emailAddress);
+     
+       
+            await addToCourse("[1-3-2000, Chapter One, Rupasu]%[2-3-200, Chapter 2, Kibwa]","1-1-2000", "1-1-2005", _Object.emailAddress);
+        
+      
+     
+           
+       
+    }
+    function addToCourse(scheduleDetails, startDate, expiryDate, owner){
+        let activateUser = {
+            attendance: "[1-3-2000,false]%[2-3-2000,false]",
+            courseName: "bvljksjvlbdsbv",
+            downloadDocuments: "[CODE1, CODE2]",
+            duration: "4months",
+            expiryDate: "1-1-2005",
+            lectureVideos: "[VCODE1, VCODE2]]",
+            owner: "isbernard@gmail.com",
+            profile: "profileid",
+            scheduleDetails: "[1-3-2000, Chapter One, Rupasu]%[2-3-200, Chapter 2, Kibwa]",
+            startDate: "1-1-2000"
+            }
+            activateUser.scheduleDetails = scheduleDetails;
+            activateUser.startDate = startDate;
+            activateUser.expiryDate = expiryDate;
+            activateUser.owner = owner;
+            alert("Starting to add something");
+             firebase.firestore().collection('activeUsers').add(activateUser).then(()=>{
+                alert('Added', owner);
+            });
     }
     function sendEmail(subject, body, email){
    Email.send({
@@ -235,7 +285,6 @@ return retval;
 }
 function userRejectionTemplate(){
     let retval = `Dear {{name}},
-
 Thank you for your interest in Graduate Studies at PrimECS Education. We received many interesting and excellent applications, only some of which we were able to accept this year. We reviewed your application very carefully and note several strong features. There is rigorous competition for entry into our graduate programs and your application was not among those that we were able to accept.
 <br>
 We encourage you to apply to other graduate schools and we wish you every success with your studies and beyond.
