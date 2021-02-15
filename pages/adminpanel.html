@@ -168,12 +168,21 @@ function openApplication(email){
         </div>`;
     for(let i=0; i< _ObjectArray.length; i++){
         let target = _ObjectArray[i];
-        applicationViewer.innerHTML += `
+        if(String(target[1]).startsWith('http')){
+            applicationViewer.innerHTML += `
+        <div class="applicationrecord">
+            <p class="attrib">${target[0]}</p>
+            <a href="${target[1]}">${target[1]}</a>
+        </div>
+        `;
+        }else{
+            applicationViewer.innerHTML += `
         <div class="applicationrecord">
             <p class="attrib">${target[0]}</p>
             <p class="value">${target[1]}</p>
         </div>
         `;
+        }
     }
     applicationViewer.style.display = "flex";
     backer.style.display = "block";
