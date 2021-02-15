@@ -28,6 +28,32 @@ button{
 
 
 }
+.broadcastSender{
+    position: fixed;
+    background-color: rgb(243, 243, 243);
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    animation: MacAnnimation 1s  ease-in-out;
+}
+@keyframes MacAnnimation{
+    from{margin-top: 0;}
+    to{margin-top: 200px;}
+}
+.broadcastSender input{
+    padding: 5px;
+    margin: 5px;
+}
+.broadcastSender textarea{
+    padding: 5px;
+    margin: 5px;
+}
+
 .navigator .fastPres{
     padding: .5rem;
     text-transform: uppercase;
@@ -122,6 +148,21 @@ padding-bottom: 10px;
                  -6px -6px 12px #ffffff;
     width: 80%;  
     padding-left: 1%;      
+    border-left:20px rgb(224, 10, 10) solid;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10%;
+}
+.main .captain .admittedApplication{
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow:  6px 6px 12px #ebebeb, 
+                 -6px -6px 12px #ffffff;
+    width: 80%;  
+    padding-left: 1%;      
     border-left:20px rgb(7, 228, 55) solid;
     margin-top: 10px;
     padding-top: 10px;
@@ -146,7 +187,7 @@ padding-bottom: 10px;
     height: 100%;
     width: 100%;
     top: 0;
-    display: none;
+   /* // display: none; */
     
 }
 .applicationiViewer{

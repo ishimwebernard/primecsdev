@@ -10,7 +10,16 @@
     <title>Admin Panel</title>
 </head>
 <body>
-    <div class="backer"></div>
+    <div class="backer" id="backer"></div>
+    <div class="broadcastSender" id="broadcastSender">
+        <h1>Broadcast Sending Wizard</h1>
+        <input type="text" placeholder="Subject Line">
+        <textarea name="" id="" cols="30" rows="10" placeholder="Body of Broadcast"></textarea>
+        <div class="buttonArea">
+            <button>Send</button>
+            <button onclick="cancelBroadcast()">Cancel</button>
+        </div>
+    </div>
     <div class="applicationiViewer" id="applicationViewer">
        <div class="controls">
         <p class="applicant">Application Status</p>
@@ -36,22 +45,22 @@
         </div>
         <div class="main">
             <div class="heading">
-                <button>New Broadcast</button>
+                <button onclick="showDiv('broadcastSender', 'flex')">New Broadcast</button>
                 <button>Log out</button>
             </div>
             <div class="captain" id="dashboard">
                 <p class="presenter">Usage</p>
                 <div class="trippleCards">
                     <div class="card">
-                        <p class="number">123</p>
+                        <p class="number" id="nApplications">0</p>
                         <p class="use">Applications</p>
                     </div>
                     <div class="card">
-                        <p class="number">123</p>
+                        <p class="number" id="admittedPeopleNumber">0</p>
                         <p class="use">Admitted</p>
                     </div>
                     <div class="card">
-                        <p class="number">123</p>
+                        <p class="number">0</p>
                         <p class="use">Courses</p>
                     </div>
                 </div>
@@ -123,19 +132,32 @@ let endDate = '';
 const applications = document.getElementById('applications');
 loadApplications();
 function loadApplications(){
+    let admittedAd = 0;
     firebase.firestore().collection('users').get().then((qsnapShot)=>{
         qsnapShot.forEach((doc)=>{
             // console.log(doc.data());
             let additionDoc = doc.data();
-            applications.innerHTML += `
+            
+            if(doc.data().admitted == true){
+                admittedAd += 1;
+                document.getElementById('admittedPeopleNumber').innerText = admittedAd;
+                applications.innerHTML += `
+            <div class="admittedApplication" onclick="openApplication('${doc.data().emailAddress}')">
+                        <p class="sender">${doc.data().firstName} ${doc.data().secondName}</p>
+                        <p class="date">${doc.data()._date}</p>
+                    </div>
+            `;
+            }else{
+                applications.innerHTML += `
             <div class="application" onclick="openApplication('${doc.data().emailAddress}')">
                         <p class="sender">${doc.data().firstName} ${doc.data().secondName}</p>
                         <p class="date">${doc.data()._date}</p>
                     </div>
             `;
+            }
             additionDoc.id = doc.id;
-            // console.log(additionDoc);
             allUsers.push(additionDoc);
+            document.getElementById('nApplications').innerText = allUsers.length;
         })
     })
 }
@@ -230,6 +252,10 @@ function sendEmailAdmission() {
             alert('User admitted succesfully');
         })
     }
+    function showDiv(div, mode){
+        document.getElementById('backer').style.display = 'block';
+        document.getElementById(div).style.display = `${mode}`;
+    }
     async function createConcreteCourse(arch, eng, cons){
         var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -237,9 +263,9 @@ function sendEmailAdmission() {
     var yyyy = today.getFullYear();
     today = dd + '-' + mm + '-' + yyyy;
 
-            await addToCourse(await generateSchedule('AEC123'),today, endDate, _Object.emailAddress, _Object.id);
+            await addToCourse(await generateSchedule('AEC0'),today, endDate, _Object.emailAddress, _Object.id);
     
-            await addToCourse(await generateSchedule('AEC123'),today, endDate, _Object.emailAddress, _Object.id);
+            await addToCourse(await generateSchedule('AEC0'),today, endDate, _Object.emailAddress, _Object.id);
         
     }
 
@@ -345,6 +371,13 @@ function sendEmailAdmission() {
             })
         });
         return retval;
+    }
+    function sendBroadcast(subject, body ){
+
+    }
+    function cancelBroadcast(){
+        document.getElementById('backer').style.display = 'none';
+        document.getElementById('broadcastSender').style.display = 'none';
     }
     function sendEmail(subject, body, email){
    Email.send({
