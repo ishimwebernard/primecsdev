@@ -3,21 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/membership.css">
+    <link rel="stylesheet" href="../css/createaccount.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;600;700&display=swap" rel="stylesheet"> 
-    <title>Programs</title>
+    <title>PrimeEcs</title>
 </head>
 <body>
     <div class="content">
+        <div class="filler" id="filler"></div>
+        <div class="sending" id="sending">
+            <h1>Sending Application</h1>
+            <progress id="progressSending" value="0" max="100"></progress>
+        </div>
+        
+        <div class="verifyYourInfo" id="verifyYourInfo">
+            <h1>Please verify your information before submitting</h1>
+            <div class="checkItems" id="checkItems">
+                <div class="itemForVerification">
+                    <p class="identifier">IDENTIFIER</p>
+                    <p class="value">VALUE</p>
+                </div>
+               
+
+            </div>
+            <div class="buttonGroup">
+                <button onclick="trigger('transfer')">Yes, Send</button>
+                <button onclick="allowCheck()">No, let me check</button>
+            </div>
+        </div>
+        <div class="loader" id="loader">
+            <div class="lc" id="lc">
+                <img src="../assets/images/loading.gif" alt="">
+            <h2>Loading ...</h2>
+            </div>
+        </div>
         <div class="menu" id="menu">
+            
           <div class="col1">
-            <p class="navigationitem">Home</p>
-            <p class="navigationitem">Programs</p>
-            <p class="navigationitem">Membership</p>
-            <p class="navigationitem">About us</p>
-            <p class="navigationitem">Contact</p>
+            <p class="navigationitem" onclick="location.href=`./index.html`">Home</p>
+                <p class="navigationitem" onclick="location.href=`./pages/programs.html`">Programs</p>
+                <p class="navigationitem" onclick="location.href=`./pages/membership.html`">Membership</p>
+                <p class="navigationitem">About us</p>
+                <p class="navigationitem">Contact</p>
           </div>
           <div class="col2" onclick="showHideHamburger()"> </div>
         </div>
@@ -27,12 +54,12 @@
                 <div class="line"> </div>
                 <div class="line"> </div>
             </div>
-            <img src="../assets/images/logolearning.png" class="logo">
+            <img src="/assets/images/logo.png" class="logo">
             <div class="navigationitems">
                 <p class="navigationitem" onclick="location.href=`../index.html`">Home</p>
-                <p class="navigationitem" onclick="location.href=`../pages/programs.html`">Programs</p>
-                <p class="navigationitem" onclick="location.href=`../pages/membership.html`">Membership</p>
-                <p class="navigationitem">About us</p>
+                <p class="navigationitem" onclick="location.href=`./programs.html`">Programs</p>
+                <p class="navigationitem" onclick="location.href=`./membership.html`">Membership</p>
+                <p class="navigationitem" onclick="location.href=`./aboutus.html`">About us</p>
                 <p class="navigationitem">Contact</p>
             </div>
             <div class="rightitems">
@@ -42,101 +69,286 @@
                     <div class="button" onclick="location.href=`/pages/signinup.html`">
                         <p class="signintext">SIGN IN</p>
                     </div>
-                    
                     <div class="button">
                         <p class="subscribetext">SUBSCRIBE</p>
                     </div>
                 </div>
             </div>
         </div>
-        <h1 class="presenter">AEC360 Members and presenters</h1>
+        <div class="r">>
+        <div class="realcontainer">
+        
+            <div id="signin" class="tab">
+                <h2>Applicant's information</h2>
+                <p><i>As we live by learning, In order to be a member of the program, please fill up the application form below. The outcomes will be notified to you upon the evaluation! We would appreciate to have you as part of the knot! </i></p>    
 
-        <div class="member">
-            <img src="https://www.myprimecs.com/uploads/1/2/5/7/125742319/published/yves-r-21.jpg?1602407897" alt="">
-            <div class="text">
-                <h1 class="title">
-                    Yves Rugasaguhunga, PE 
-                </h1>
-                <p class="description">
-                    Yves is the principal facilitator of the AEC360 Education Initiative. An infrastructure builder and an entrepreneur, Yves is Founder and President at PrimECS, LLC., a startup engineering and construction solutions consultant based in Maryland, US. Yves’ decade-long practice in infrastructure design and construction has focused on large infrastructure projects including bridges and roads, tunnels and supporting structures, as well as transit rail structures. Licensed as a Professional Engineer (PE) in several states, he obtained both his Bachelor’s degree and his Master's degree in Civil Engineering (Geotechnics) from New York University's Tandon School of Engineering (formerly Polytechnic University). Yves is particularly interested in youth empowerment. He advocates for self-directed learning and entrepreneurship as empowering tools for the less affluent. As such, he strives to create local and intercontinental self-development opportunities in the AEC industry.
-                </p>
-            </div>
-        </div>
+                <!-- <div class="buttongroup">
+                     <div class="button">
+                        <img src="../assets/images/Google.png" alt="">
+                        <p class="textdesc">Sign up with google</p>
+                    </div>
+                    <div class="button">
+                        <img src="../assets/images/Facebook.png" alt="" id="facebook">
+                        <p class="textdesc">Sign up with facebook</p>
+                    </div>
+                </div> -->
+                <div class="form">
+                   <div class="sct">
+                    <p class="separator">Full names</p>
+                    <div class="names">
+                        <input type="text" placeholder="First Name" id="firstName">
+                    <input type="text" placeholder="Second Name" id="secondName">
+                    </div>
+                   </div>
+                    <div class="sct">
+                        <p class="separator">Address</p>
+                    <div class="names">
+                        <input type="text" placeholder="Cell" id="cell">
+                        <input type="text" placeholder="Sector" id="sector">
+                    </div>
+                    <div class="names">
+                        <input type="text" placeholder="City/district" id="city">
+                        <input type="text" placeholder="Province" id="province">
+                    </div>
+                    <div class="names">
+                        <input type="text" id="phoneNumber" placeholder="Phone number" id="phone">
+                    
+                           <input type="text" id="emailAddress" placeholder="Email address">
+                    </div>
+                    <div class="triple">
+                        <div class="i">
+                            <label for="birthday">Date Of Birth</label>
+                            <input type="date" id="dateOfBirth">       
+                        </div>
+                        <div class="i">
+                            <input type="text" id="idNumber" placeholder="Identification Number">
+                        </div>
+                        <div class="i">
+                            <input type="text" id="citizenship" placeholder="Citizenship">
+                        </div>
+                    </div>
+                    </div>
+                   <div class="sct">
+                       <p class="separator">Area Of Interest</p>
+                    <div class="triple">
+                        <div class="i">
+                            <input type="checkbox" id="architecture" class="check">
+                            <label for="architechture">Architecture</label>
 
-        <div class="member">
-            <img src="https://www.myprimecs.com/uploads/1/2/5/7/125742319/editor/roman-p.jpg?1602408003" alt="">
-            <div class="text">
-                <h1 class="title">
-                    Roman Przepiórka, PE PMP                </h1>
-                <p class="description">
-                    Roman is a Project Director at Buro Happold. Roman has over twenty years' experience in engineering.  He spent six years on active duty as an Officer in the US Marines. Roman has significant international experience and expertise, living and working in eight countries and working on projects in eighteen countries. Roman's passion and talent are for working and identifying with people, shaping and sharing a common vision, and delivering technically outstanding projects in some of the world's most challenging situations and markets. He holds a BS in Civil Engineering from Northwestern University, an MS in Civil Engineering (Structures) from the University of Illinois at Urbana-Champaign and an MBA (Project Management) from Henley Business School. Roman is a licensed Professional Engineer (PE) in eleven states, a licensed Structural Engineer (SE) in Illinois, a Chartered Engineer, a Fellow of both the Institution of Civil Engineers and the Institution of Structural Engineers, a certified Project Management Professional (PMP) and a Member of the Association for Project Management.                </p>
-            </div>
-        </div>
+                        </div>
+                        <div class="i">
+                            <input type="checkbox" class="check" id="engineering">
+                            <label for="engineering">Engineering</label>
 
-        <div class="member">
-            <img src="https://www.myprimecs.com/uploads/1/2/5/7/125742319/published/may-el-katthab.jpg?1602408152" alt="">
-            <div class="text">
-                <h1 class="title">
-                    May ElKhattab, PE PMP
-                </h1>
-                <p class="description">
-                    May is a Design Project Manager with Burns Engineering based in Washington D.C., USA. She has over 8 years of experience in geotechnical tunneling projects and management of rail and transit projects. May holds a Bachelor of Engineering in Civil Engineering from the American University of Beirut and a Master’s degree in Civil Engineering (Geotechnics) from the University of Texas in Austin. May has worked on major projects across North American, including New York, Boston, Virginia, D.C, Miami, Los Angeles, and Canada. May is a certified Project Management Professional (PMP) and a licensed Professional Engineer (PE) in several American states. The current VP of the Engineers Without Borders’ New York Professional Chapter, May enjoys volunteering which has brought her to volunteer in other countries including Rwanda.                 </p>
-            </div>
-        </div>
+                        </div>
+                        <div class="i">
+                            <input type="checkbox"  class="check" id="construction">
+                            <label for="construction">Construction</label>
+                        </div>
 
-        <div class="member">
-            <img src="https://www.myprimecs.com/uploads/1/2/5/7/125742319/published/marty-o.jpg?1602408257" alt="">
-            <div class="text">
-                <h1 class="title">
-                    Martin R. Olgren III
-                </h1>
-                <p class="description">
-                    Martin (Marty) is a Project Controls Manager for Halmar International, based in Alexandria, VA, USA. With over 13 years of Construction Project Management working for some of the leading industry leaders, he specializes in Cost Control as well as Planning and Scheduling utilizing Oracle Primavera P6. Thanks to his technology savviness and innovator’s mind, Marty has been an industry leader in the Project Controls field for large infrastructure projects. Marty holds a BS in Construction Management from Michigan Technological University.                </p>
+                    </div>
+                    <input type="text" placeholder="If Other, please explain" id="other">
+                    
+                    <div class="form">
+                        <select name="cars" id="employment">
+                            <option value="volvo">Employed</option>
+                            <option value="saab">Unemployed</option>
+                          </select>
+                        <input type="text" placeholder="Company name" id="companyName">
+                        <input type="text" placeholder="Supervisors address" id="supervisorAddess">
+                    </div> 
+                    <input type="text" placeholder="Email" id="supervisorEmail">
+                   </div>
+                    <button onclick="FlipTab(1)">Next</button>
+                </div> 
             </div>
-        </div>
-        <div class="member">
-            <img src="https://www.myprimecs.com/uploads/1/2/5/7/125742319/published/abdoul-d-1.jpg?1602408395" alt="">
-            <div class="text">
-                <h1 class="title">
-                    Abdoul G. Diallo 
-                </h1>
-                <p class="description">
-                    Abdoul is a Project Manager with Tutor Perini Corp based in Jessup, MD, USA. Abdoul is a visionary and results-driven Construction Manager with over 20 years of experience and success in leading and managing all aspects of Civil Engineering from construction project start-ups to completion through the schedule and budget management. Abdoul’s long operational career has led him to a solid field expertise anchored in leadership principles that focus on safety and quality.  An astute negotiator and a confident decision-maker, Abdoul possesses strong value engineering skills in the heavy civil construction industry including Highway and Bridge Construction. Abdoul holds a BS in Civil Engineering from the University of Conakry. He is a candidate for the Master’s degree in transportation engineering at Drexel University based in Philadelphia, PA. A native of Guinea (Conakry), Abdoul’s long term dream is to continue to give back to his native continent in the area of engineering and construction.                </p>
-            </div>
-        </div>
-   
-           
-
-        <div class="footer" id="footer">
-            <div class="footeritem">
-                <h2>Construction Services</h2>
-                <p class="footerinfo">Client's Advisor & Representative</p>
-                <p class="footerinfo">Preconstruction, Construction</p>
-                <p class="footerinfo">Procurement</p>
-                <p class="footerinfo">Quality Safety</p>
+            <div class="tab" id="ceateacc2" >
+                <h2>Education</h2>
+                <div class="sct">
+                    <p class="separator">Highschool Records</p>
+                    <div class="double">
+                        <div class="i">
+                            <label for="highschool">Highschool</label>
+                            <input type="text" id="highSchool">
+                        </div>
+                        <div class="i">
+                            <label for="address">Address</label>
+                            <input type="text" id="highSchoolAddress">
+                        </div>
+                    </div>
+                    <div class="double">
+                        <div class="i">
+                            <label for="from">From</label>
+                            <input type="date" id="highSchoolFrom">
+                        </div>
+                        <div class="i">
+                            <label for="to">To</label>
+                            <input type="date" id="highSchoolTo">
+                        </div>
     
-
-            </div>
-            <div class="footeritem">
-                <h2>Engineering Services</h2>
-                <p class="footerinfo">Structural Engineering</p>
-                <p class="footerinfo">Geotechnical Engineering </p>
-                <p class="footerinfo">State Civil Engineering</p>
-                <p class="footerinfo">Design and Engineering </p>
+                    </div>
+                    <p>Did you graduate</p>
+                    <div class="double">
+                        <div class="i">
+                            <input type="checkbox" class="check" id="highSchoolGraduate">
+                            <label for="yes">YES</label>
+                            <input type="checkbox" class="check" id="no">
+                            <label for="no">NO</label>
+                        </div>
+                        <div class="i">
+                            <label for="diploma">Diploma</label>
+                            <input type="text" id="highSchoolDiploma">
+                        </div>
+                    </div>
+                </div>
+                <div class="sct">
+                    <p class="separator">University Records</p>
+                    <div class="double">
+                        <div class="i">
+                            <label for="highschool">University</label>
+                            <input type="text" id="university">
+                        </div>
+                        <div class="i">
+                            <label for="address">Address</label>
+                            <input type="text" id="universityAddress">
+                        </div>
+                    </div>
+                    <div class="double">
+                        <div class="i">
+                            <label for="from">From</label>
+                            <input type="date" id="universityFrom">
+                        </div>
+                        <div class="i">
+                            <label for="to">To</label>
+                            <input type="date" id="universityTo">
+                        </div>
     
-
+                    </div>
+                    <p>Did you graduate</p>
+                    <div class="double">
+                        <div class="i">
+                            <input type="checkbox" id="universityGraduate" class="check" id="yes">
+                            <label for="yes">YES</label>
+                            <input type="checkbox" class="check" id="no">
+                            <label for="no">NO</label>
+                        </div>
+                        <div class="i">
+                            <label for="diploma">Diploma</label>
+                            <input type="text" id="universityDiploma">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="FlipTab(0)">Back</button>
+                <button onclick="FlipTab(2)">Next</button>
             </div>
-            <div class="footeritem">
-                <h2>Education Programs</h2>
-                <p class="footerinfo">Energy Engineering</p>
-                <p class="footerinfo">Transportation engineering</p>
-                <p class="footerinfo">Power Source Engineering</p>
-                <p class="footerinfo">Transportation engineering</p>
+            <div class="tab" id="signin">
+                <h2>Availability time</h2>
+              <div class="form">
+                <div class="names">
+                    <input type="text" placeholder="From" id="avTimeFrom">
+                    <input type="text" placeholder="To" id="avTimeTo">
+                </div>
+              </div>
+              <button onclick="FlipTab(1)">Back</button>
+              <button onclick="FlipTab(3)">Next</button>
+            </div>
+            <div class="tab" id="signin">
+                <h2>Strengths and weakness</h2>
+                <div class="sct">
+                    <p class="separator">What are 3 areas you excel in?</p>
+                    <div class="form">
+                        <div class="names" id="Off">
+                            <input type="text" placeholder="Area 1" id="areasExcel1">
+                        <input type="text" placeholder="Area 2" id="areasExcel2">
+                        <input type="text" placeholder="Area 3" id="areasExcel3">
     
-
+                        </div>
+                    </div>
+                   </div>
+                   <div class="sct">
+                    <p class="separator">What are 3 areas you need to improve?</p>
+                    <div class="form">
+                        <div class="names" id="Off">
+                            <input type="text" placeholder="Area 1" id="areasImprove1">
+                        <input type="text" placeholder="Area 2" id="areasImprove2">
+                        <input type="text" placeholder="Area 3" id="areasImprove3">
+    
+                        </div>
+                    </div>
+                   </div>
+                   <button onclick="FlipTab(2)">Back</button>
+              <button onclick="FlipTab(4)">Next</button>
             </div>
+            <div class="tab">
+                <h2>References</h2>
+                <p>Please list two professional references include their WhatsApp numbers.</p>
+                <h3>Referal 1</h3>
+                <table>
+                    <tr>
+                        <th>Company name</th>
+                        <td><input type="text" placeholder="Enter Company name" id="ref1Company">  </td>
+                    </tr>
+                    <tr>
+                        <th>Email address</th>
+                        <td><input type="text" placeholder="Enter Email address" id="ref1Email">  </td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td><input type="text" placeholder="Enter Phone Number" id="ref1Phone">  </td>
+                    </tr>
+                    <tr>
+                        <th>Relationship</th>
+                        <td><input type="text" placeholder="Enter Relationship" id="ref1Relationship">  </td>
+                    </tr>
+                </table>
+                <h3>Referal 2</h3>
+                <table>
+                    <tr>
+                        <th>Company name</th>
+                        <td><input type="text" placeholder="Enter Company name" id="ref2Company">  </td>
+                    </tr>
+                    <tr>
+                        <th>Email address</th>
+                        <td><input type="text" placeholder="Enter Email address" id="ref2Email">  </td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td><input type="text" placeholder="Enter Phone Number" id="ref2Phone">  </td>
+                    </tr>
+                    <tr>
+                        <th>Relationship</th>
+                        <td><input type="text" placeholder="Enter Relationship" id="ref2Relationship">  </td>
+                    </tr>
+                </table>
+                <button onclick="FlipTab(3)">Back</button>
+                <button onclick="FlipTab(5)">Next</button>
+            </div>
+            <div class="tab" id="ceateacc3">
+                <h2>You are almost done</h2>
+             
+                <div class="attachements">
+                    <h1>Attachments</h1>
+                    <div class="realfiles">
+                        <input type="file" accept="image/png, image/jpeg, pdf" id="someCv" hidden>
+                    <label for="someCv" id="cvlabel">CV</label>
+                    <input type="file" accept="image/png, image/jpeg, pdf" id="applicationLetter" hidden>
+                    <label for="applicationLetter">Application letter</label>
+                    <input type="file" accept="image/png, image/jpeg, pdf" id="paymentReceipt" hidden>
+                    <label for="paymentReceipt" id="paymentLabel">Payment Receipt</label>
+                    </div>
+                </div>
+                <button id="finish" onclick="sendApplication()">Finish</button>
+                <button onclick="FlipTab(4)">Back</button>
+
             
+            </div>
+             
         </div>
-        <script src="../js/programs.js"></script>
+        </div>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineMax.min.js" integrity="sha512-lJDBw/vKlGO8aIZB8/6CY4lV+EMAL3qzViHid6wXjH/uDrqUl+uvfCROHXAEL0T/bgdAQHSuE68vRlcFHUdrUw==" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" integrity="sha512-8Wy4KH0O+AuzjMm1w5QfZ5j5/y8Q/kcUktK9mPUVaUoBvh3QPUZB822W/vy7ULqri3yR8daH3F58+Y8Z08qzeg==" crossorigin="anonymous"></script>
+        <script src="../js/createAccount.js"></script>
 </body>
 </html>
