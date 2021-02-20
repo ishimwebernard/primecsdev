@@ -10,6 +10,15 @@
     <title>Admin Panel</title>
 </head>
 <body>
+    <div class="error" id="error">
+        <h1 >Error while completing this action</h1>
+       <h1>An error occurred while submitting the response</h1><br>
+       <p>Some suggested solutions include<br>
+            1. Check your internet connection<br>
+            2. The user trying to be admitted may be already admitted    
+    </p>
+    <button onclick="closeError()">Close</button>
+    </div>
     <div class="backer" id="backer"></div>
     <div class="broadcastSender" id="broadcastSender">
         <h1>Broadcast Sending Wizard</h1>
@@ -227,7 +236,7 @@ function sendEmailAdmission(pwd) {
             alert('User admitted succesfully');
 
         }).catch((error)=>{
-            alert('Admission Failure');
+                fireError();
         });
        
     }
@@ -426,7 +435,7 @@ function rejectApplication(){
    firebase.firestore().collection('users').doc(_Object.id).delete().then(()=>{
     sendEmail("Primecs Education Admission Decision", String(userRejectionTemplate()).replaceAll("{{name}}", _Object.firstName), _Object.emailAddress);
    }).catch((error)=>{
-       alert(error);
+       fireError();
    })
 }
 function loadSubjects(){
@@ -437,6 +446,17 @@ function loadSubjects(){
             document.getElementById('availCourses').innerText = totalSubjects;
         })
     })
+}
+function closeError(){
+    
+    document.getElementById('error').style.display = 'none';
+    document.getElementById('backer').style.display = 'none';
+}
+function fireError(){
+    document.getElementById('error').style.display = 'flex';
+    document.getElementById('backer').style.display = 'block';
+    document.getElementById('applicationViewer').style.display = 'none';
+    document.getElementById('broadcastSender').style.display = 'none';
 }
 
   </script>  
