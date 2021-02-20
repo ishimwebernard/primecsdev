@@ -13,10 +13,10 @@
     <div class="backer" id="backer"></div>
     <div class="broadcastSender" id="broadcastSender">
         <h1>Broadcast Sending Wizard</h1>
-        <input type="text" placeholder="Subject Line">
-        <textarea name="" id="" cols="30" rows="10" placeholder="Body of Broadcast"></textarea>
+        <input type="text" placeholder="Subject Line" id="subjectView">
+        <textarea name="" cols="30" rows="10" placeholder="Body of Broadcast" id="bodyView"></textarea>
         <div class="buttonArea">
-            <button>Send</button>
+            <button onclick="sendBroadcast()">Send</button>
             <button onclick="cancelBroadcast()">Cancel</button>
         </div>
     </div>
@@ -60,47 +60,12 @@
                         <p class="use">Admitted</p>
                     </div>
                     <div class="card">
-                        <p class="number">0</p>
+                        <p class="number" id="availCourses">0</p>
                         <p class="use">Courses</p>
                     </div>
                 </div>
                 <p class="presenter">Broadcasts sent</p>
-                <div class="broadcasts">
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
-                    <div class="broadcast">
-                        <p class="title">Required fees for the next semester</p>
-                        <p class="contexter">Some contexter text and everything needed</p>    
-
-                    </div>
+                <div class="broadcasts" id="broadcasts">
                     </div>
                 </div>
                 <div class="captain" id="applications">
@@ -114,6 +79,7 @@
         <script src="https://smtpjs.com/v3/smtp.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-analytics.js"></script>
+<script src="js/jsspg.min.js"></script>
 <script>
     var firebaseConfig = {
       apiKey: "AIzaSyDV8mW8bweN6YOg0OKgRZ9umOVs_UUN-pA",
@@ -126,11 +92,25 @@
     };
     firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
 let allUsers = [];
 let _Object;
 let endDate = '';
 const applications = document.getElementById('applications');
+switchTab(0);
 loadApplications();
+loadBroadcasts();
+loadSubjects();
+function getASecureRandomPassword() {
+    let maxLengthPass = 10;
+   var collectionOfLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+   var generatedPassword = "";
+   var size = collectionOfLetters.length;
+   for (var i = 0; i < maxLengthPass; ++i) {
+      generatedPassword = generatedPassword + collectionOfLetters.charAt(Math.floor(Math.random() * size));
+   }
+   return generatedPassword;
+}
 function loadApplications(){
     let admittedAd = 0;
     firebase.firestore().collection('users').get().then((qsnapShot)=>{
@@ -217,18 +197,18 @@ function closeAplication(){
     backer.style.display = "none";
 }
 
-function sendEmailAdmission() { 
+function sendEmailAdmission(pwd) { 
     let _EMAIL_TEMPLATE;
-        _EMAIL_TEMPLATE = String(emailTemplate()).replaceAll('{{email}}', _Object.emailAddress).replaceAll('{{name}}', _Object.firstName);
+        _EMAIL_TEMPLATE = String(emailTemplate(pwd)).replaceAll('{{email}}', _Object.emailAddress).replaceAll('{{name}}', _Object.firstName);
         sendEmail("Primecs Education Admission decision", `${_EMAIL_TEMPLATE}`, `${_Object.emailAddress}`);
     
     } 
     function admitApplication(){
-    
+        let password = getASecureRandomPassword();
         let admittedUser = _Object;
         admittedUser.admitted = true;
-        firebase.auth().createUserWithEmailAndPassword(_Object.emailAddress, _Object.emailAddress)
-        .then((user)=>{
+        firebase.auth().createUserWithEmailAndPassword(_Object.emailAddress, password)
+        .then(async(user)=>{
             ////////
             let eng = false, cons = false, arc = false;
             if(_Object.architecture !== "optionfalse"){
@@ -241,16 +221,15 @@ function sendEmailAdmission() {
                 eng = true;
             }
              createConcreteCourse(arc, eng, cons).then(()=>{
-                sendEmailAdmission();
+                sendEmailAdmission(password);
              })
-
-            
-        }).catch((error)=>{
-            alert('User already exists');
-        });
-        firebase.firestore().collection('users').doc(_Object.id).set(admittedUser).then(()=>{
+            await firebase.firestore().collection('users').doc(_Object.id).set(admittedUser);
             alert('User admitted succesfully');
-        })
+
+        }).catch((error)=>{
+            alert('Admission Failure');
+        });
+       
     }
     function showDiv(div, mode){
         document.getElementById('backer').style.display = 'block';
@@ -372,8 +351,34 @@ function sendEmailAdmission() {
         });
         return retval;
     }
-    function sendBroadcast(subject, body ){
+    function sendBroadcast(){
+        let subject = document.getElementById('subjectView').value;
+        let body = document.getElementById('bodyView').value;
+        const broadcastObject = {Subject: subject, Body: body};
+        firebase.firestore().collection('broadcasts').add(broadcastObject).then(()=>{
+            console.log('Article added');
+        })
 
+        for(let user of allUsers){
+            if(user.admitted == true){
+                try{
+                    sendEmail(subject, body, user.emailAddress);
+                }catch(error){
+                    alert('Unsuccesful broadcast to', user.emailAddress);
+                }
+            }
+        }
+    }
+    function loadBroadcasts(){
+        firebase.firestore().collection('broadcasts').get().then((qsnapShot)=>{
+            qsnapShot.forEach((doc)=>{
+                broadcasts.innerHTML += `     <div class="broadcast">
+                        <p class="title">${doc.data().Subject}</p>
+                        <p class="contexter">${doc.data().Body}</p>    
+
+                    </div>`;
+            })
+        })
     }
     function cancelBroadcast(){
         document.getElementById('backer').style.display = 'none';
@@ -387,19 +392,18 @@ function sendEmailAdmission() {
        Subject : `${subject}`,
        Body : `${body}`,
    }).then(
-     message => alert(message)
+     //message => alert(message)
    );
 }
-function emailTemplate(){
+function emailTemplate(newPassword){
     let retval = `
-
         <h1>Welcome to PRIMECS EDUCATION</h1>
         <p class="main">
             Hello {{name}}<br><br>
             We are thrilled to inform you that you have been selected to enroll in any course you need through primecs education<br>
-            We have provided you with the default email and password. You will be requested to change the password to your preferences<br><br>
+            We have provided you with the default email and password. You are requested to change the password to your preferences<br><br>
             Username: {{email}}<br>
-            Password: {{email}}<br>
+            Password: ${newPassword}<br>
 
         </p>
         <div class="footer">
@@ -424,6 +428,15 @@ function rejectApplication(){
    }).catch((error)=>{
        alert(error);
    })
+}
+function loadSubjects(){
+    let totalSubjects = 0;
+    firebase.firestore().collection('subjectDesign').get().then((qSnap)=>{
+        qSnap.forEach((DOC)=>{
+            totalSubjects += 1;
+            document.getElementById('availCourses').innerText = totalSubjects;
+        })
+    })
 }
 
   </script>  
