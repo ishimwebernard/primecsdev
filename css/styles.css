@@ -248,14 +248,12 @@
     background: linear-gradient(180deg, #273fb8, #273fb8, #526df5);
     width: 100%;
     cursor: pointer;
+    text-align: center;
+
 }
 .row3 .categories .learnmore p{
     color: #fff;
-    width: 100%;
-    height: 100%;
     font-weight: 700;
-    padding: 5px;
-    text-align: center;
 }
 .row3 .categories .category{
     padding-bottom: 1%;
