@@ -18,6 +18,37 @@
     flex-direction: row;
 }
 
+.content .row1 .logoPart{
+    display: flex;
+    flex-direction: row;    
+}
+.content .row1 .logoPart img{
+    width: 30%;
+}
+.content .row1 .logoPart a{
+    text-decoration: none;
+    color: #000;
+}
+.content .row1 .logoPart .textLogo .mix{
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.content .row1 .logoPart .textLogo .mix span{
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.content .row1 .logoPart .textLogo .mix .a{
+    color: #233AA9;
+}
+.content .row1 .logoPart .textLogo .mix .e{
+    color: #8dff23;
+}
+.content .row1 .logoPart .textLogo .mix .c{
+    color: #1fbfd4;
+}
+.content .row1 .logoPart .textLogo .linkandesc{
+    font-size: .75rem;
+}
 .content .row1 .navigationItemsHolder .trueContainer{
     width: 100%;
     display: flex;

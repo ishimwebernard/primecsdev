@@ -37,11 +37,11 @@
     opacity: 97.5%;
     background-color: #fff;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1.5fr 2fr 1fr;
   box-shadow:  -30px -30px 60px #B2B9BA;
   padding-bottom: 1rem;
   padding-top: 1rem;
-  padding-left: 4.8125rem;
+  padding-left: 2.8125rem;
   padding-right: 5.125rem;
   position: fixed;
   top: 0;
@@ -56,6 +56,37 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
+}
+.content .row1 .logoPart{
+    display: flex;
+    flex-direction: row;    
+}
+.content .row1 .logoPart img{
+    width: 30%;
+}
+.content .row1 .logoPart a{
+    text-decoration: none;
+    color: #000;
+}
+.content .row1 .logoPart .textLogo .mix{
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.content .row1 .logoPart .textLogo .mix span{
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+.content .row1 .logoPart .textLogo .mix .a{
+    color: #233AA9;
+}
+.content .row1 .logoPart .textLogo .mix .e{
+    color: #8dff23;
+}
+.content .row1 .logoPart .textLogo .mix .c{
+    color: #1fbfd4;
+}
+.content .row1 .logoPart .textLogo .linkandesc{
+    font-size: .75rem;
 }
 .content .row1 .navigationitems p{
     margin-left: 2rem;
@@ -291,11 +322,7 @@
         flex-direction: row;
         padding: 1rem;
     }
-    .content .row1 img{
-        margin-right: auto;
-        margin-left: auto;
 
-    }
     .content .row1 .navigationitems{
         display: none;
     }
